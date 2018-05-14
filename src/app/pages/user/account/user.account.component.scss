@@ -1,0 +1,202 @@
+.account-title{
+  text-align: center;
+}
+
+img:hover{
+  -webkit-filter: sepia(50%);
+  filter: sepia(50%);
+  -webkit-transition: .3s ease-in-out;
+  transition: .3s ease-in-out;
+}
+
+.columns{
+  margin-top: 7.5vh;
+}
+
+.column{
+  margin-right: 30px;
+  width: 45vh;
+  float: left;
+}
+
+.header-icon{
+  margin-top: 1.5vh;
+  font-size: 4vh;
+}
+
+.header-title{
+  margin-top: 1.5vh;
+  margin-left: 2.5vh;
+  font-size: 2.25vh;
+}
+
+//FIRST
+.security-content{
+  height:45vh;
+}
+
+.change-password-section{
+  border-top: black 1px solid;
+  height: 15vh;
+}
+
+.password-change-title{
+  margin-top: 4vh;
+  font-size: 2.25vh;
+  width: 36vh;
+  margin-left: 2.5vh;
+}
+.password-image{
+  height: 7vh;
+  width: 8vh;
+  float: left;
+  margin-top: 4vh;
+  margin-right: 3vh;
+  margin-left: 2.5vh;
+  cursor: pointer;
+}
+
+.change-email-section{
+  border-top: black 1px solid;
+  height: 15vh;
+}
+.mail-icon{
+  height: 7vh;
+  width: 8vh;
+  float: left;
+  margin-top: 4vh;
+  margin-right: 3vh;
+  margin-left: 2.5vh;
+  cursor: pointer;
+}
+.email-change-title{
+  margin-top: 4vh;
+  font-size: 2.5vh;
+  width: 35vh;
+  margin-left: 2.5vh;
+}
+
+.see-your-access-section{
+  border-top: black 1px solid;
+  height: 15vh;
+}
+.privacy-icon{
+  height: 7vh;
+  width: 8vh;
+  float: left;
+  margin-top: 4vh;
+  margin-right: 3vh;
+  margin-left: 2.5vh;
+  cursor: pointer;
+}
+.accessibility-title{
+  margin-top: 4vh;
+  font-size: 2.5vh;
+  width: 25vh;
+  margin-left: 15vh;
+}
+
+//SECOND
+.options-content{
+  height:50vh;
+}
+
+.user-data-section{
+  border-top: black 1px solid;
+  height: 20vh;
+}
+.details-icon{
+  margin-left: 2.5vh;
+  margin-top: 4vh;
+  width: 12vh;
+  height: 12vh;
+  float: left;
+  margin-right: 2.5vh;
+  cursor: pointer;
+}
+.details-title{
+  margin-top: 4vh;
+  font-size: 2.25vh;
+  width: 35vh;
+}
+
+.my-statistics-section{
+  border-top: black 1px solid;
+  height: 15vh;
+}
+.statistics-icon{
+  margin-left: 2.5vh;
+  margin-top: 2.5vh;
+  width: 10vh;
+  height: 10vh;
+  float: left;
+  margin-right: 2.5vh;
+  cursor: pointer;
+}
+.statistics-title{
+  margin-top: 4vh;
+  font-size: 2.25vh;
+  width: 35vh;
+}
+
+.my-appearance-section{
+  border-top: black 1px solid;
+  height: 15vh;
+}
+.appearance-icon{
+  margin-left: 2.5vh;
+  margin-top: 2.5vh;
+  width: 10vh;
+  height: 10vh;
+  float: left;
+  margin-right: 2.5vh;
+  cursor: pointer;
+}
+.appearance-title{
+  margin-top: 3vh;
+  font-size: 2.5vh;
+  width: 35vh;
+}
+
+//THIRD
+.help-content{
+  height:35vh;
+}
+
+.ask-question-section{
+  border-top: black 1px solid;
+  height: 15vh;
+}
+.question-icon{
+  margin-left: 2.5vh;
+  margin-top: 2.5vh;
+  width: 10vh;
+  height: 10vh;
+  float: left;
+  margin-right: 2.5vh;
+  cursor: pointer;
+}
+.question-title{
+  margin-top: 6vh;
+  font-size: 2.4vh;
+  width: 35vh;
+}
+
+.crm-preview-section{
+  border-top: black 1px solid;
+  height: 20vh;
+}
+.preview-icon{
+  margin-left: 2.5vh;
+  margin-top: 3vh;
+  width: 15vh;
+  height: 15vh;
+  float: left;
+  margin-right: 2.5vh;
+  cursor: pointer;
+}
+.preview-title{
+  margin-top: 5vh;
+  font-size: 2.4vh;
+  width: 35vh;
+}

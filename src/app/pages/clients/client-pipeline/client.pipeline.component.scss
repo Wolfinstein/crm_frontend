@@ -1,0 +1,46 @@
+.pipeline_columns{
+  margin-top: 4vh;
+}
+
+.searchInput-pipeline{
+  margin-top: 5vh;
+  margin-left: 50px;
+  width: 35vh;
+  height: 5vh;
+}
+
+
+
+.col{
+  margin-left: 50px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  text-align: center;
+  width: 30vh;
+  float: left;
+  height: auto;
+  min-height: 20vh;
+  margin-bottom: 30px;
+}
+
+.col_title {
+  margin-bottom: 10px;
+  -webkit-border-top-left-radius: 10px;
+  -webkit-border-top-right-radius: 10px;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+  -moz-border-radius-topright: 10px;
+  -moz-border-radius-topleft: 10px;
+  text-align: center;
+  line-height: 10vh;
+  height: 10vh;
+  font-size: 3vh;
+  font-weight: bold;
+}
+
+p{
+  margin-bottom: 5px;
+  font-size: 2.25vh;
+}
+

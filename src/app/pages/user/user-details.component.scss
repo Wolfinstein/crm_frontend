@@ -1,0 +1,50 @@
+
+.panel {
+  margin-top: 20px;
+  border: 1px solid rgba(0, 0, 0, 0);
+  border-radius: 4px 4px 4px 4px;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+  margin-bottom: 20px;
+}
+
+.panel-primary {
+  width: 40%;
+  margin-left: 30%;
+}
+
+
+.panel-heading {
+  border-bottom: 1px solid rgba(0, 0, 0, 0);
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  padding: 10px 15px;
+}
+
+.panel-title {
+  font-size: 16px;
+  margin-bottom: 0;
+  margin-top: 0;
+}
+
+.panel-body:before, .panel-body:after {
+  content: " ";
+  display: table;
+}
+
+.panel-body:before, .panel-body:after {
+  content: " ";
+  display: table;
+}
+
+.panel-body:after {
+  clear: both;
+}
+
+.panel-body {
+  padding: 15px;
+}
+
+.container
+{
+  margin-bottom: 20px;
+}

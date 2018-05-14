@@ -1,0 +1,102 @@
+  <mat-form-field class="searchInput-pipeline">
+    <input matInput type="text" placeholder="Search" [(ngModel)]="term">
+  </mat-form-field>
+
+<div class="pipeline_columns">
+
+  <div class="col">
+    <div class='col_title'>
+      New Lead
+    </div>
+      <div [dragula]='"first-bag"' [dragulaModel]='clients_NewLead'>
+        <div class="no-drag" *ngIf="!clients_NewLead.length || term">placeholder</div>
+        <div [ngClass]="{odd: odd, even: even}"
+             *ngFor="let client of clients_NewLead | filter : term ;
+             let index = index;
+             let odd = odd;
+             let even = even;" >
+                <p *ngIf="!clients_NewLead.length">placeholder</p>
+                <p *ngIf="client.client_type.startsWith('C')"> {{client.name}}</p>
+                <p *ngIf="client.client_type.startsWith('I')"> {{client.firstName + ' ' + client.lastName}}</p>
+          <span #clientId hidden>{{'!' + client.id + '$'}}</span>
+        </div>
+      </div>
+  </div>
+
+  <div class="col">
+    <div class='col_title'>
+      Contact Mode
+    </div>
+    <div [dragula]='"first-bag"' [dragulaModel]='clients_ContactMode'>
+      <div class="no-drag" *ngIf="!clients_ContactMode.length || term">placeholder</div>
+      <div [ngClass]="{odd: odd, even: even}"
+           *ngFor="let client of clients_ContactMode | filter : term ;
+           let index= index;
+           let odd = odd;
+           let even = even;">
+              <p *ngIf="!clients_ContactMode.length">placeholder</p>
+              <p *ngIf="client.client_type.startsWith('C')"> {{client.name}}</p>
+              <p *ngIf="client.client_type.startsWith('I')"> {{client.firstName + ' ' + client.lastName}}</p>
+              <span #clientId hidden>{{'!' + client.id + '$'}}</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class='col_title'>
+      Qualified
+    </div>
+    <div  [dragula]='"first-bag"' [dragulaModel]='clients_Qualified'>
+      <div class="no-drag" *ngIf="!clients_Qualified.length || term">placeholder</div>
+      <div [ngClass]="{odd: odd, even: even}"
+           *ngFor="let client of clients_Qualified | filter : term ;
+           let index = index;
+           let odd = odd;
+           let even = even;">
+              <p *ngIf="client.client_type.startsWith('C')"> {{client.name}}</p>
+              <p *ngIf="client.client_type.startsWith('I')"> {{client.firstName + ' ' + client.lastName}}</p>
+              <span #clientId hidden>{{'!' + client.id + '$'}}</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class='col_title'>
+      In Negotiation
+    </div>
+    <div [dragula]='"first-bag"' [dragulaModel]='clients_InNegotiations'>
+      <div class="no-drag" *ngIf="!clients_InNegotiations.length || term">placeholder</div>
+      <div [ngClass]="{odd: odd, even: even}"
+            *ngFor="let client of clients_InNegotiations | filter : term ;
+            let index = index;
+            let odd = odd;
+            let even = even;">
+                <p *ngIf="client.client_type.startsWith('C')"> {{client.name}}</p>
+                <p *ngIf="client.client_type.startsWith('I')"> {{client.firstName + ' ' + client.lastName}}</p>
+        <span #clientId hidden>{{'!' + client.id + '$'}}</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class='col_title'>
+      Closed
+    </div>
+    <div [dragula]='"first-bag"' [dragulaModel]='clients_Closed'>
+      <div class="no-drag" *ngIf="!clients_Closed.length || term">placeholder</div>
+      <div [ngClass]="{odd: odd, even: even}"
+           *ngFor="let client of clients_Closed | filter : term ;
+           let index = index;
+           let odd = odd;
+           let even = even;">
+              <p *ngIf="client.client_type.startsWith('C')"> {{client.name}}</p>
+              <p *ngIf="client.client_type.startsWith('I')"> {{client.firstName + ' ' + client.lastName}}</p>
+        <span #clientId hidden>{{'!' + client.id + '$'}}</span>
+      </div>
+    </div>
+  </div>
+
+
+</div>
+
+

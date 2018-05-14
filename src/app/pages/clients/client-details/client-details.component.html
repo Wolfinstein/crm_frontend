@@ -1,0 +1,597 @@
+<a *ngFor="let client of client" >
+  <div class="container">
+
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          <h3 class="panel-title">Client details</h3>
+        </div>
+        <div class="panel-body">
+          <div class="row-fluid">
+            <div class="span6">
+              <strong *ngIf="client.client_type=='Individual'">{{client.firstName}} {{client.lastName}}</strong>
+              <strong *ngIf="client.client_type=='Company'">{{client.name}}</strong>
+              <table class="table table-condensed table-responsive table-user-information">
+                <tbody>
+                <tr>
+                  <td>Client type: </td>
+                  <td>{{client.client_type}}</td>
+                </tr>
+                <tr>
+                  <td>Email: </td>
+                  <td>{{client.email}}</td>
+                </tr>
+                <tr>
+                  <td>Registered since: </td>
+                  <td>{{client.createTimeStamp | date:'dd/MM/yyyy HH:mm:ss' }} </td>
+                </tr>
+                <tr>
+                  <td>Description: </td>
+                  <td>{{client.description}}</td>
+                </tr>
+                <tr *ngIf="client.client_type=='Individual'">
+                  <td>PESEL: </td>
+                  <td>{{client.pesel}}</td>
+                </tr>
+                <tr *ngIf="client.client_type=='Company'">
+                  <td>Nip: </td>
+                  <td>{{client.nip}}</td>
+                </tr>
+                <tr *ngIf="client.client_type=='Company'">
+                  <td>REGON: </td>
+                  <td>{{client.regon}}</td>
+                </tr>
+                <tr *ngIf="client.client_type=='Company'">
+                  <td>Trade: </td>
+                  <td>{{client.trade}}</td>
+                </tr>
+                <tr *ngIf="client.client_type=='Company'">
+                  <td>Type: </td>
+                  <td>{{client.type}}</td>
+                </tr>
+                <tr *ngIf="client.client_type=='Company'">
+                  <td>Website: </td>
+                  <td>{{client.website}}</td>
+                </tr>
+                <tr>
+                  <td>Status: </td>
+                  <td>{{client.status}}</td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <button mat-raised-button *ngIf="sub_tables == false" (click)="showHide(true)">Additional Informations</button>
+      <button mat-raised-button *ngIf="sub_tables == true" (click)="showHide(false)">Hide</button>
+    </div>
+
+
+
+    <div [hidden]="!sub_tables">
+
+      <div class="header-image">
+        <img class="table-icon" [src]="'./assets/images/activities.png'" />
+        <h3 style="margin-left: 10px"> Activities</h3>
+      </div>
+
+      <input
+        type='text'
+        class="searchInput"
+        placeholder='Type to filter the Type column...'
+        (keyup)='updateFilter($event)'
+      />
+      <ngx-datatable
+        #activity_table
+        class="ngx-datatable bootstrap"
+        [headerHeight]="50"
+        [columnMode]="'flex'"
+        [rowHeight]="40"
+        [rows]="client_activities"
+        [footerHeight]="50"
+        [limit]="5"
+      >
+
+        <ngx-datatable-column [flexGrow]="1" prop="type_activity" name="Type" >
+        </ngx-datatable-column>
+
+        <ngx-datatable-column [flexGrow]="5" prop="description_activity" name="Description">  </ngx-datatable-column>
+
+      <ngx-datatable-column [flexGrow]="1" prop="activity_date" name="Date">  </ngx-datatable-column>
+      </ngx-datatable>
+
+    </div>
+
+    <div [hidden]="!sub_tables">
+
+      <div class="header-image">
+      <img class="table-icon" [src]="'./assets/images/addresses.png'" />
+        <h3 style="margin-left: 5px">Addresses</h3>
+      </div>
+
+        <ngx-datatable
+        class="ngx-datatable bootstrap"
+        [headerHeight]="50"
+        [columnMode]="'flex'"
+        [rowHeight]="40"
+        [rows]="client_addresses"
+        [footerHeight]="50"
+        >
+
+        <ngx-datatable-column [flexGrow]="0.6" name="AddressType">
+          <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
+            <span
+              title="Double click to edit"
+              (dblclick)="editing[rowIndex + '-addressType'] = true"
+              *ngIf="!editing[rowIndex + '-addressType']">
+              {{value}}
+            </span>
+            <select
+              *ngIf="editing[rowIndex + '-addressType']"
+              (blur)="editing[rowIndex + '-addressType'] = false"
+              (change)="updateAddress($event, 'addressType', rowIndex)"
+              [value]="value">
+              <option value="HOME">HOME</option>
+              <option value="BILLING">BILLING</option>
+              <option value="DELIVERY">DELIVERY</option>
+              <option value="BUSINESS">BUSINESS</option>
+            </select>
+          </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column [flexGrow]="0.6" name="Country">
+          <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
+          <span
+          title="Double click to edit"
+          (dblclick)="editing[rowIndex + '-country'] = true"
+          *ngIf="!editing[rowIndex + '-country']">
+          {{value}}
+          </span>
+          <input class="input-group"
+          autofocus
+          (blur)="updateAddress($event, 'country', rowIndex)"
+          *ngIf="editing[rowIndex+ '-country']"
+          type="text"
+          [value]="value"
+          />
+          </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column [flexGrow]="0.6" name="State">
+          <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
+          <span
+          title="Double click to edit"
+          (dblclick)="editing[rowIndex + '-state'] = true"
+          *ngIf="!editing[rowIndex + '-state']">
+          {{value}}
+          </span>
+          <input class="input-group"
+          autofocus
+          (blur)="updateAddress($event, 'state', rowIndex)"
+          *ngIf="editing[rowIndex+ '-state']"
+          type="text"
+          [value]="value"
+          />
+          </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column [flexGrow]="0.6" name="City">
+          <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
+          <span
+          title="Double click to edit"
+          (dblclick)="editing[rowIndex + '-city'] = true"
+          *ngIf="!editing[rowIndex + '-city']">
+          {{value}}
+          </span>
+          <input class="input-group"
+          autofocus
+          (blur)="updateAddress($event, 'city', rowIndex)"
+          *ngIf="editing[rowIndex+ '-city']"
+          type="text"
+          [value]="value"
+          />
+          </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column [flexGrow]="0.6" name="Street">
+          <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
+          <span
+          title="Double click to edit"
+          (dblclick)="editing[rowIndex + '-street'] = true"
+          *ngIf="!editing[rowIndex + '-street']">
+          {{value}}
+          </span>
+          <input class="input-group"
+          autofocus
+          (blur)="updateAddress($event, 'street', rowIndex)"
+          *ngIf="editing[rowIndex+ '-street']"
+          type="text"
+          [value]="value"
+          />
+          </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column [flexGrow]="0.6" name="HouseNumber">
+          <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
+          <span
+          title="Double click to edit"
+          (dblclick)="editing[rowIndex + '-houseNumber'] = true"
+          *ngIf="!editing[rowIndex + '-houseNumber']">
+          {{value}}
+          </span>
+          <input class="input-group"
+          autofocus
+          (blur)="updateAddress($event, 'houseNumber', rowIndex)"
+          *ngIf="editing[rowIndex+ '-houseNumber']"
+          type="text"
+          [value]="value"
+          />
+          </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column [flexGrow]="0.6" name="ZipCode">
+          <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
+          <span
+          title="Double click to edit"
+          (dblclick)="editing[rowIndex + '-zipCode'] = true"
+          *ngIf="!editing[rowIndex + '-zipCode']">
+          {{value}}
+          </span>
+          <input class="input-group"
+          autofocus
+          (blur)="updateAddress($event, 'zipCode', rowIndex)"
+          *ngIf="editing[rowIndex+ '-zipCode']"
+          type="text"
+          [value]="value"
+          />
+          </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column  [flexGrow]="0.6">
+          <ng-template  let-row="row" let-value="value" ngx-datatable-cell-template>
+            <button mat-raised-button color="warn" style="float: right; margin-right: 20px; line-height: 25px" (click)="deleteAddress(row.id)" >Delete</button>
+          </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-footer>
+          <ng-template ngx-datatable-footer-template>
+            <mat-icon class="add-icon" (click)="addAddress()">add</mat-icon>
+        </ng-template>
+        </ngx-datatable-footer>
+      </ngx-datatable>
+
+       <div class="errMsg" *ngIf="errMsg.includes('HOME')">{{errMsg}}</div>
+    </div>
+
+    <div [hidden]="!sub_tables">
+
+      <div class="header-image">
+        <img class="table-icon"  [src]="'./assets/images/contacts.png'" />
+        <h3 style="margin-left: 10px">Contacts</h3>
+      </div>
+
+      <ngx-datatable
+        class="ngx-datatable bootstrap"
+        [headerHeight]="50"
+        [columnMode]="'flex'"
+        [rowHeight]="40"
+        [rows]="client_contacts"
+        [footerHeight]="50"
+      >
+
+        <ngx-datatable-column [flexGrow]="0.6" name="Name">
+          <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
+          <span
+            title="Double click to edit"
+            (dblclick)="editing[rowIndex + '-name'] = true"
+            *ngIf="!editing[rowIndex + '-name']">
+          {{value}}
+          </span>
+            <input class="input-group"
+                   autofocus
+                   (blur)="updateContact($event, 'name', rowIndex)"
+                   *ngIf="editing[rowIndex+ '-name']"
+                   type="text"
+                   [value]="value"
+            />
+          </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column [flexGrow]="0.6" name="Surname">
+          <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
+          <span
+            title="Double click to edit"
+            (dblclick)="editing[rowIndex + '-surname'] = true"
+            *ngIf="!editing[rowIndex + '-surname']">
+          {{value}}
+          </span>
+            <input class="input-group"
+                   autofocus
+                   (blur)="updateContact($event, 'surname', rowIndex)"
+                   *ngIf="editing[rowIndex+ '-surname']"
+                   type="text"
+                   [value]="value"
+            />
+          </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column [flexGrow]="1" name="Email">
+          <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
+          <span
+            title="Double click to edit"
+            (dblclick)="editing[rowIndex + '-email'] = true"
+            *ngIf="!editing[rowIndex + '-email']">
+          {{value}}
+          </span>
+            <input class="input-group"
+                   autofocus
+                   (blur)="updateContact($event, 'email', rowIndex)"
+                   *ngIf="editing[rowIndex+ '-email']"
+                   type="text"
+                   [value]="value"
+            />
+          </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column [flexGrow]="0.6" name="Position">
+          <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
+          <span
+            title="Double click to edit"
+            (dblclick)="editing[rowIndex + '-position'] = true"
+            *ngIf="!editing[rowIndex + '-position']">
+          {{value}}
+          </span>
+            <input class="input-group"
+                   autofocus
+                   (blur)="updateContact($event, 'position', rowIndex)"
+                   *ngIf="editing[rowIndex+ '-position']"
+                   type="text"
+                   [value]="value"
+            />
+          </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column [flexGrow]="0.6" name="Phone">
+          <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
+          <span
+            title="Double click to edit"
+            (dblclick)="editing[rowIndex + '-phone'] = true"
+            *ngIf="!editing[rowIndex + '-phone']">
+          {{value}}
+          </span>
+            <input class="input-group"
+                   autofocus
+                   (blur)="updateContact($event, 'phone', rowIndex)"
+                   *ngIf="editing[rowIndex+ '-phone']"
+                   type="text"
+                   [value]="value"
+            />
+          </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column [flexGrow]="0.6" name="Description">
+          <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
+          <span
+            title="Double click to edit"
+            (dblclick)="editing[rowIndex + '-description'] = true"
+            *ngIf="!editing[rowIndex + '-description']">
+          {{value}}
+          </span>
+            <input class="input-group"
+                   autofocus
+                   (blur)="updateContact($event, 'description', rowIndex)"
+                   *ngIf="editing[rowIndex+ '-description']"
+                   type="text"
+                   [value]="value"
+            />
+          </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column  [flexGrow]="0.6">
+          <ng-template  let-row="row" let-value="value" ngx-datatable-cell-template>
+            <button mat-raised-button color="warn" style="float: right; margin-right: 20px; line-height: 25px" (click)="deleteContact(row.id)" >Delete</button>
+          </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-footer>
+          <ng-template ngx-datatable-footer-template>
+            <mat-icon class="add-icon" (click)="addContact()">add</mat-icon>
+          </ng-template>
+        </ngx-datatable-footer>
+      </ngx-datatable>
+
+      <div class="errMsg" *ngIf="errMsg.includes('Error occurred')">{{errMsg}}</div>
+    </div>
+
+    <div [hidden]="!sub_tables">
+
+      <div class="header-image">
+        <img class="table-icon" [src]="'./assets/images/contractors.png'" />
+        <h3 style="margin-left: -10px">Contractors</h3>
+      </div>
+
+      <ngx-datatable
+        class="ngx-datatable bootstrap"
+        [headerHeight]="50"
+        [columnMode]="'flex'"
+        [rowHeight]="40"
+        [rows]="client_contractors"
+        [footerHeight]="50"
+      >
+
+        <ngx-datatable-column [flexGrow]="0.6" name="Name">
+          <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
+          <span
+            title="Double click to edit"
+            (dblclick)="editing[rowIndex + '-name'] = true"
+            *ngIf="!editing[rowIndex + '-name']">
+          {{value}}
+          </span>
+            <input class="input-group"
+                   autofocus
+                   (blur)="updateContractor($event, 'name', rowIndex)"
+                   *ngIf="editing[rowIndex+ '-name']"
+                   type="text"
+                   [value]="value"
+            />
+          </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column [flexGrow]="0.6" name="Description">
+          <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
+          <span
+            title="Double click to edit"
+            (dblclick)="editing[rowIndex + '-description'] = true"
+            *ngIf="!editing[rowIndex + '-description']">
+          {{value}}
+          </span>
+            <input class="input-group"
+                   autofocus
+                   (blur)="updateContractor($event, 'description', rowIndex)"
+                   *ngIf="editing[rowIndex+ '-description']"
+                   type="text"
+                   [value]="value"
+            />
+          </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column  [flexGrow]="0.6">
+          <ng-template  let-row="row" let-value="value" ngx-datatable-cell-template>
+            <button mat-raised-button color="warn" style="float: right; margin-right: 20px; line-height: 25px" (click)="deleteContractor(row.id)" >Delete</button>
+          </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-footer>
+          <ng-template ngx-datatable-footer-template>
+            <mat-icon class="add-icon" (click)="addContractor()">add</mat-icon>
+          </ng-template>
+        </ngx-datatable-footer>
+      </ngx-datatable>
+
+      <div class="errMsg" *ngIf="errMsg.includes('Error occurred')">{{errMsg}}</div>
+    </div>
+
+    <div [hidden]="!sub_tables">
+
+
+      <div class="header-image">
+        <img class="table-icon" [src]="'./assets/images/documents.png'" />
+        <h3 style="margin-left: -10px">Documents</h3>
+      </div>
+
+      <ngx-datatable
+        class="ngx-datatable bootstrap"
+        [headerHeight]="50"
+        [columnMode]="'flex'"
+        [rowHeight]="40"
+        [rows]="client_documents"
+        [footerHeight]="50"
+      >
+
+        <ngx-datatable-column [flexGrow]="1" name="Name"></ngx-datatable-column>
+
+        <ngx-datatable-column [flexGrow]="1" name="Description"></ngx-datatable-column>
+
+        <ngx-datatable-column [flexGrow]="0.6" name="Extension"></ngx-datatable-column>
+
+        <ngx-datatable-column  [flexGrow]="0.5">
+          <ng-template  let-row="row" let-value="value" ngx-datatable-cell-template>
+            <button mat-raised-button color="accent" style="float: right; line-height: 25px" (click)="downloadFile(row.id, row.name)" >Download</button>
+          </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column  [flexGrow]="0.5">
+          <ng-template  let-row="row" let-value="value" ngx-datatable-cell-template>
+            <button mat-raised-button color="warn" style="float: right; margin-right: 20px; line-height: 25px" (click)="deleteFile(row.id)" >Delete</button>
+          </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-footer>
+          <ng-template ngx-datatable-footer-template>
+            <input  style="padding-left: 70%;" type="file" (change)="uploadFile($event)">
+          </ng-template>
+        </ngx-datatable-footer>
+      </ngx-datatable>
+
+      <div class="errMsg" *ngIf="errMsg.includes('File must not be bigger than 100mb')">{{errMsg}}</div>
+    </div>
+
+    <div [hidden]="!sub_tables">
+
+      <div class="header-image">
+        <img class="table-icon" [src]="'./assets/images/documents.png'" />
+        <h3 style="margin-left: 20px">Orders</h3>
+      </div>
+
+      <ngx-datatable
+        class="ngx-datatable bootstrap"
+        [rows]="client_orders"
+        [headerHeight]="45"
+        [rowHeight]="'auto'"
+        [columnMode]="'flex'"
+        [footerHeight]="30"
+        [limit]="15"
+      >
+
+        <ngx-datatable-column name="Realization Number" [flexGrow]="0.55">
+          <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+            {{row.realization_number}}
+          </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column name="Order Date" [flexGrow]="0.5">
+          <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+            {{row.order_date | date:'dd-MM-yyyy'}}
+          </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column name="Realization Term" [flexGrow]="0.55">
+          <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+            {{row.realization_term | date:'dd-MM-yyyy'}}
+          </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column [flexGrow]="0.45" name="Status">
+          <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
+            <span
+              title="Double click to edit"
+              (dblclick)="editing[rowIndex + '-status'] = true"
+              *ngIf="!editing[rowIndex + '-status']">
+              {{value}}
+            </span>
+            <select
+              *ngIf="editing[rowIndex + '-status']"
+              (blur)="editing[rowIndex + '-status'] = false"
+              (change)="updateOrder($event, 'status', rowIndex)"
+              [value]="value">
+              <option value="Realized">Realized</option>
+              <option value="InProgress">InProgress</option>
+              <option value="Unrealized">Unrealized</option>
+              <option value="Canceled">Canceled</option>
+              <option value="AddingWares">AddingWares</option>
+            </select>
+          </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column [flexGrow]="0.8">
+          <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+            <button mat-raised-button *ngIf="row.status == 'AddingWares'" color="Link" style=" margin-right: 5px; line-height: 25px" [routerLink]="'/client/order/ware/' + row.id" >Add Ware</button>
+            <button mat-raised-button color="accent" style=" margin-right: 5px; line-height: 25px" *ngIf="showButton()" [routerLink]="'/client/order/' + row.id" >Show</button>
+            <button mat-raised-button color="warn" style=" margin-right: 20px; line-height: 25px" *ngIf="showButton()" (click)="deleteOrders(row.id)" >Delete</button>
+          </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-footer>
+          <ng-template ngx-datatable-footer-template>
+            <mat-icon  class="add-icon" [routerLink]="'/client/order/new/' + client.id">add</mat-icon>
+          </ng-template>
+        </ngx-datatable-footer>
+      </ngx-datatable>
+
+      <div class="errMsg" *ngIf="errMsg.includes('Error occurred')">{{errMsg}}</div>
+    </div>
+
+</a>

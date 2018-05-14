@@ -1,0 +1,124 @@
+<mat-sidenav-container>
+  <mat-icon  *ngIf="isInThemeChange()" color="warn" class="right-one" (click)="toDark()">invert_colors</mat-icon>
+  <mat-icon  *ngIf="isInThemeChange()" color="warn" class="left-one" (click)="toLight()">invert_colors</mat-icon>
+
+  <mat-sidenav *ngIf="route != '/home'
+                   && route != '/login'
+                   && route != '/forgot-password'
+                   && route != '/reset-password'
+                   && route != '/theme'" #sidebar mode="side" [ngStyle]="{'width.em': sidenavWidth}" (mouseover)="increase()"
+               (mouseleave)="decrease()">
+
+
+    <mat-nav-list *ngIf="IsLoggedIn()">
+
+      <!--USERS-->
+      <mat-list-item *ngIf="showUserLink()" (click)="showUsersOptions()">
+        <mat-icon class="sidebar-item-icon">people</mat-icon>
+        <div *ngIf="sidenavWidth > 6" class="sidebar-item">
+          <p>Users</p>
+        </div>
+      </mat-list-item>
+
+      <mat-list-item *ngIf="showUserLink()" [hidden]="showUsers" [routerLink]="'/users'" routerLinkActive="active">
+        <mat-icon class="sidebar-item-sub-icon" >list</mat-icon>
+        <div *ngIf="sidenavWidth > 6" class="sidebar-item-sub-item">
+          <p>User List</p>
+        </div>
+      </mat-list-item>
+
+      <mat-list-item *ngIf="showUserLink()" [hidden]="showUsers" [routerLink]="'/users/add'" routerLinkActive="active">
+        <mat-icon class="sidebar-item-sub-icon" >add</mat-icon>
+        <div *ngIf="sidenavWidth > 6" class="sidebar-item-sub-item">
+          <p>Add User</p>
+        </div>
+      </mat-list-item>
+
+      <!--CLIENTS-->
+
+      <mat-list-item (click)="showClientsOptions()">
+        <mat-icon class="sidebar-item-icon">monetization_on</mat-icon>
+        <div *ngIf="sidenavWidth > 6" class="sidebar-item">
+          <p>Clients</p>
+        </div>
+      </mat-list-item>
+
+      <mat-list-item [hidden]="showClients"  [routerLink]="'/clients'" routerLinkActive="active">
+        <mat-icon class="sidebar-item-sub-icon" >list</mat-icon>
+        <div *ngIf="sidenavWidth > 6" class="sidebar-item-sub-item">
+          <p> Client List</p>
+        </div>
+      </mat-list-item>
+
+      <mat-list-item [hidden]="showClients"  [routerLink]="'/client/new'" routerLinkActive="active">
+        <mat-icon class="sidebar-item-sub-icon" >add</mat-icon>
+        <div *ngIf="sidenavWidth > 6" class="sidebar-item-sub-item">
+          <p> Add Client</p>
+        </div>
+      </mat-list-item>
+
+      <mat-list-item [hidden]="showClients"  [routerLink]="'/clients/import'" routerLinkActive="active">
+        <mat-icon class="sidebar-item-sub-icon" >unarchive</mat-icon>
+        <div *ngIf="sidenavWidth > 6" class="sidebar-item-sub-item">
+          <p> Import Clients</p>
+        </div>
+      </mat-list-item>
+
+      <mat-list-item [hidden]="showClients"  [routerLink]="'/clients/pipeline'" routerLinkActive="active">
+        <mat-icon class="sidebar-item-sub-icon" >folder_shared</mat-icon>
+        <div *ngIf="sidenavWidth > 6" class="sidebar-item-sub-item">
+          <p> Clients Pipeline</p>
+        </div>
+      </mat-list-item>
+
+      <mat-list-item [hidden]="showClients"  [routerLink]="'/groups'" routerLinkActive="active">
+        <mat-icon class="sidebar-item-sub-icon" >group</mat-icon>
+        <div *ngIf="sidenavWidth > 6" class="sidebar-item-sub-item">
+          <p> Clients Groups</p>
+        </div>
+      </mat-list-item>
+
+      <mat-list-item [hidden]="showClients"  [routerLink]="'/calendar'" routerLinkActive="active">
+        <mat-icon class="sidebar-item-sub-icon" >date_range</mat-icon>
+        <div *ngIf="sidenavWidth > 6" class="sidebar-item-sub-item">
+          <p>Calendar</p>
+        </div>
+      </mat-list-item>
+
+      <!--Products-->
+      <mat-list-item (click)="showProductsOptions()">
+        <mat-icon class="sidebar-item-icon">extension</mat-icon>
+        <div *ngIf="sidenavWidth > 6" class="sidebar-item">
+          <p>Products</p>
+        </div>
+      </mat-list-item>
+
+      <mat-list-item [hidden]="showProducts"  [routerLink]="'/wares'" routerLinkActive="active">
+        <mat-icon class="sidebar-item-sub-icon" >list</mat-icon>
+        <div *ngIf="sidenavWidth > 6" class="sidebar-item-sub-item">
+          <p>Products List</p>
+        </div>
+      </mat-list-item>
+
+
+    </mat-nav-list>
+
+
+
+  </mat-sidenav>
+
+  <div class="global-container">
+    <div class="header-container">
+      <header-component></header-component>
+    </div>
+    <div class="content-container">
+      <router-outlet></router-outlet>
+    </div>
+    <div class="footer-container">
+      <footer-component></footer-component>
+    </div>
+  </div>
+
+</mat-sidenav-container>
+
+

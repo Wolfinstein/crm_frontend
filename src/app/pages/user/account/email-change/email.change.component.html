@@ -1,0 +1,41 @@
+<h2 class="title">Change Email Form</h2>
+<mat-horizontal-stepper [linear]="isLinear" #stepper="matHorizontalStepper">
+  <mat-step [stepControl]="form">
+    <form [formGroup]="form">
+      <ng-template matStepLabel>Fill out your new email</ng-template>
+      <mat-form-field>
+        <div [ngClass]="{'has-error':!form.controls['email'].valid}">
+        <input matInput type="email" placeholder="Email" [formControl]="form.controls['email']" required>
+        <div *ngIf="form.controls['email'].hasError('required') && form.controls['email'].touched" class="alert alert-danger" >You must include a email.</div>
+        </div>
+      </mat-form-field>
+      <div>
+        <button mat-raised-button color="accent" matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="form">
+    <form [formGroup]="form">
+      <ng-template matStepLabel>Repeat your new email</ng-template>
+      <mat-form-field>
+        <div [ngClass]="{'has-error':!form.controls['confirmEmail'].valid}">
+        <input matInput placeholder="Repeat Email" type="email" [formControl]="form.controls['confirmEmail']" required>
+        <div *ngIf="form.controls['confirmEmail'].hasError('required') && form.controls['confirmEmail'].touched" class="alert alert-danger" >You must repeat the email.</div>
+        <div *ngIf="form.invalid && form.controls['confirmEmail'].touched" class="alert alert-danger" > Given emails are not equal or you typed not valid email format :<</div>
+        </div>
+      </mat-form-field>
+      <div>
+        <button mat-raised-button color="accent" matStepperPrevious>Back</button>
+        <button mat-raised-button color="accent" matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Change Email</ng-template>
+    <div class="final-step">
+      <button mat-raised-button color="accent" matStepperPrevious>Back</button>
+      <button mat-raised-button color="warn" [disabled]="!form.valid" (click)="sendEmail()">Send</button>
+      <p class="errMsg" *ngIf="errMsg">{{errMsg}}</p>
+    </div>
+  </mat-step>
+</mat-horizontal-stepper>

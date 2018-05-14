@@ -1,0 +1,49 @@
+.container{
+  padding-top: 2%;
+}
+
+.mat-raised-button{
+  margin-bottom: 15px;
+}
+
+.material-icons{
+  font-size: 35px;
+  cursor: pointer;
+  margin-right:20px;
+}
+
+mat-form-field{
+  width: 95%;
+  float: left
+}
+
+.left{
+  margin-left: 15px;
+  width: 48%;
+  float: left
+}
+
+.right{
+  margin-left: 15px;
+  width: 48%;
+  float: right
+}
+
+.groupFilter{
+  width: 30vh;
+  margin-top: 20px;
+}
+
+.form-control{
+  width: 45vh;
+  margin-right: 20px;
+}
+
+h5{
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.form-group{
+  border-bottom: #1f2124 3px solid;
+}

@@ -1,0 +1,55 @@
+  <div class="panel panel-primary">
+        <div class="panel-heading">
+          <h3 class="panel-title">User information</h3>
+        </div>
+        <div class="panel-body">
+          <div class="row-fluid">
+            <div class="span6">
+              <strong>{{user.name + ' ' + user.surname}}</strong>
+              <table class="table table-condensed table-responsive table-user-information">
+                <tbody>
+                <tr>
+                  <td>Role</td>
+                  <td>{{user.role}}</td>
+                </tr>
+                <tr>
+                  <td>Registered since:</td>
+                  <td>{{user.create_timestamp | date:'dd/MM/yyyy HH:mm:ss' }} </td>
+                </tr>
+                <tr>
+                  <td>Email</td>
+                  <td>{{user.email}}</td>
+                </tr>
+                <tr>
+                  <td>Login</td>
+                  <td>{{user.login}}</td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+  <div class="container">
+    <h4>Activities</h4>
+      <ngx-datatable  class="ngx-datatable bootstrap"
+                     [rows]="activities"
+                     [headerHeight]="30"
+                     [rowHeight]="'auto'"
+                     [columnMode]="'flex'"
+                     [scrollbarV]="false"
+      >
+        <ngx-datatable-column name="Type"  prop="type_activity" [flexGrow]="0.7"></ngx-datatable-column>
+        <ngx-datatable-column name="Date"  prop="activity_date" [flexGrow]="1"></ngx-datatable-column>
+        <ngx-datatable-column name="Description"  prop="description_activity" [flexGrow]="2"></ngx-datatable-column>
+        <ngx-datatable-column name="Client" prop="client" [flexGrow]="1">
+          <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+            <button mat-raised-button color="accent" *ngIf="value.client_type == 'Individual'" [routerLink]="'/client/'+ row.id">{{value.firstName + ' ' + value.lastName}}</button>
+            <button mat-raised-button color="accent" *ngIf="value.client_type == 'Company'" [routerLink]="'/client/'+ row.id">{{value.name}}</button>
+          </ng-template>
+        </ngx-datatable-column>
+      </ngx-datatable>
+  </div>
+
+

@@ -1,0 +1,26 @@
+<div class="login-container">
+    <div class="gradient">
+      <img class="background-login" [src]="'./assets/images/pic_3.jpg'" >
+
+        <form class="login-box" name="form" (ngSubmit)="login()">
+
+          <img class="key-icon" src="../../../assets/images/login-key-icon.png" />
+
+          <mat-form-field class="login-input">
+            <input matInput type="text" placeholder="Username" name="username" [(ngModel)]="model.username" #username="ngModel" required/>
+          </mat-form-field>
+
+          <mat-form-field class="login-input2">
+            <input matInput type="text" placeholder="Password" name="password" [(ngModel)]="model.password" #password="ngModel" required/>
+          </mat-form-field>
+
+          <button class="sign-in-button" mat-raised-button type="submit">Sign In</button>
+
+            <p class="errMsg" *ngIf="errMsg">{{errMsg}} </p>
+            <p class="forgot-link" [routerLink]="'/forgot-password'"  >Forgot Password ? </p>
+
+        </form>
+
+    </div>
+
+</div>

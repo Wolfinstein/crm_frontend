@@ -1,0 +1,84 @@
+<h2 class="account-title"> {{user.displayName + ' settings'}} </h2>
+
+  <div class="columns">
+
+    <mat-expansion-panel expanded="true" class="column">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+          <mat-icon class="header-icon">account_box</mat-icon>
+          <p class="header-title">Accessability and security</p>
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <div class="security-content">
+      <div class="change-password-section">
+        <img class="password-image" (click)="passwordChange()"  src="../../../../assets/images/key-icon.png"/>
+        <p class="password-change-title"> You can easily change current password ...</p>
+      </div>
+      <div class="change-email-section">
+        <img class="mail-icon" (click)="emailChange()"  src="../../../../assets/images/mail-icon.png"/>
+        <p class="email-change-title"> You can change your email as well ...</p>
+      </div>
+      <div class="see-your-access-section">
+        <img class="privacy-icon" (click)="showPermissions()"  src="../../../../assets/images/privacy-icon.png"/>
+        <p class="accessibility-title"> Check your permissions ...</p>
+      </div>
+    </div>
+
+  </mat-expansion-panel>
+
+    <mat-expansion-panel expanded="true" class="column">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+          <mat-icon class="header-icon">build</mat-icon>
+          <p class="header-title">Personal data and settings</p>
+
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <div class="options-content">
+
+      <div class="user-data-section" >
+        <img class="details-icon" (click)="accountDetails()" src="../../../../assets/images/management-icon.png"/>
+        <p class="details-title"> Check your account details and your activities ...</p>
+      </div>
+
+      <div class="my-appearance-section">
+        <img class="appearance-icon" (click)="appearanceChange()"  src="../../../../assets/images/theme-icon.png"/>
+        <p class="appearance-title"> Customize website appearance ...</p>
+      </div>
+
+      <div class="my-statistics-section">
+        <img class="statistics-icon" (click)="showStatistics()" src="../../../../assets/images/bars-icon.png"/>
+        <p class="statistics-title"> See our results ...</p>
+      </div>
+    </div >
+
+  </mat-expansion-panel>
+
+    <mat-expansion-panel expanded="true" class="column">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+
+          <mat-icon class="header-icon">help</mat-icon>
+          <p class="header-title">Help</p>
+
+         </mat-panel-title>
+    </mat-expansion-panel-header>
+    <div class="help-content">
+
+      <div class="ask-question-section">
+        <img class="question-icon" (click)="amaQuestion()"  src="../../../../assets/images/question-icon.png"/>
+        <p class="question-title"> Ask us anything ...</p>
+      </div>
+
+      <div class="crm-preview-section">
+        <img class="preview-icon"  src="../../../../assets/images/presentation-icon.png"/>
+        <p class="preview-title"> Let us show you our application ...</p>
+      </div>
+
+    </div>
+
+  </mat-expansion-panel>
+
+  </div>
+
+

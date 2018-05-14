@@ -1,0 +1,61 @@
+    <mat-tab-group>
+      <mat-tab label="Clients Distribution">
+        <h4>Clients type percentage chart overall</h4>
+        <div class="chart-content">
+          <ngx-charts-advanced-pie-chart
+            [view]="[1000, 500]"
+            [scheme]="cool"
+            [results]="clientsPercentage"
+            [gradient]="gradient"
+            [animations]="true"
+            (select)="onSelect($event)">
+          </ngx-charts-advanced-pie-chart>
+        </div>
+        <p></p>
+      </mat-tab>
+
+      <mat-tab label="2017">
+        <h4>Clients numbers chart in 2017</h4>
+        <div class="chart-content">
+        <ngx-charts-bar-vertical
+        [view]="[1000, 500]"
+        [scheme]="aqua"
+        [results]="clientStats2017"
+        [gradient]="gradient"
+        [xAxis]="true"
+        [yAxis]="true"
+        [legend]="false"
+        [showXAxisLabel]="true"
+        [showYAxisLabel]="false"
+        [xAxisLabel]=""
+        [yAxisLabel]=""
+        [animations]="true"
+        (select)="onSelect($event)">
+        </ngx-charts-bar-vertical>
+        </div>
+          <p></p>
+
+      </mat-tab>
+      <mat-tab label="2018">
+        <h4>Clients numbers chart in 2018</h4>
+        <div class="chart-content">
+        <ngx-charts-bar-vertical
+        [view]="[1000, 500]"
+        [scheme]="aqua"
+        [results]="clientStats2018"
+        [gradient]="gradient"
+        [xAxis]="true"
+        [yAxis]="true"
+        [legend]="false"
+        [showXAxisLabel]="true"
+        [showYAxisLabel]="false"
+        [xAxisLabel]=""
+        [yAxisLabel]=""
+        [animations]="true"
+        (select)="onSelect($event)">
+        </ngx-charts-bar-vertical>
+        </div>
+        <p></p>
+      </mat-tab>
+      <mat-tab label="tbd" disabled></mat-tab>
+    </mat-tab-group>

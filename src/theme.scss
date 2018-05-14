@@ -1,0 +1,394 @@
+@import '~@angular/material/theming';
+@include mat-core();
+
+
+$mat-dark-billennium: (
+  50 : #ffffff,
+  100 : #FFE082,
+  200 : #9fa8da,
+  300 : #7986cb,
+  400 : #5c6bc0,
+  500 : #9fa8da,
+  600 : #FFB300,
+  700 : #474b4f,
+  800 : #1f2124,
+  900 : #282828,
+  A100 : #8c9eff,
+  A200 : #536dfe,
+  A400 : #3d5afe,
+  A700 : #304ffe,
+  contrast: (
+    50 : #000000,
+    100 : #000000,
+    200 : #000000,
+    300 : #ffffff,
+    400 : #ffffff,
+    500 : #ffffff,
+    600 : #ffffff,
+    700 : #ffffff,
+    800 : #ffffff,
+    900 : #ffffff,
+    A100 : #FFE082,
+    A200 : #ffffff,
+    A400 : #ffffff,
+    A700 : #ffffff,
+  )
+);
+
+
+// MIXED
+@mixin mat-drawer-theme($theme) {
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, warn);
+  $background: map-get($theme, background);
+  $foreground: map-get($theme, foreground);
+
+  .header-buttons{
+    margin-left: 15px;
+    color: invert(mat-color($primary));
+  }
+
+  .mat-input-element{
+    caret-color: invert(mat-color($primary), 50);
+  }
+
+  .mat-input-underline{
+    border-bottom: 1px solid invert(mat-color($primary)) !important;
+  }
+
+  mat-form-field .mat-input-placeholder{
+    color: mat-color($warn) !important;
+  }
+
+  .col_title{
+    border-bottom: mat-color($warn) solid 1vh;
+    color: invert(mat-color($primary));
+  }
+
+  .gu-transit{
+    background-color: mat-color($warn) !important;
+  }
+
+  .gu-mirror{
+    background-color: crimson !important;
+
+  }
+
+  .even{
+    border: invert(mat-color($primary)) solid 1px;
+    color: black;
+    background-color: darkgray;
+    cursor: pointer;
+  }
+
+  .even:hover{
+    background-color: mat-color($warn, 100);
+  }
+
+  .even:active{
+    background-color: mat-color($warn);
+  }
+
+  .odd{
+    border: invert(mat-color($primary)) solid 1px;
+    color: black;
+    background-color: #dcdde3;
+    cursor: pointer;
+  }
+
+  .odd:hover{
+    background-color:  mat-color($warn, 100);
+  }
+
+  .odd:active{
+    background-color: mat-color($warn);
+  }
+
+  svg:not(:root) {
+    overflow: visible !important;
+  }
+
+  .ngx-charts text{
+    fill: invert(mat-color($primary));
+  }
+
+  #logout-href{
+    color: mat-color($warn);
+  }
+
+  .container-fluid {
+    background: mat-color($primary);
+  }
+
+  label{
+    color: invert(mat-color($primary));
+  }
+
+  .client_details {
+    color: mat-color($warn);
+    font-weight: bold;
+  }
+
+  .sidebar-item{
+    color: mat-color($warn);
+    font-size: 16px;
+    margin-left: 15px;
+    margin-top: 13px;
+  }
+
+  .sidebar-item-sub-item{
+    color: white;
+    font-size: 13px;
+    margin-left: 15px;
+    margin-top: 13px;
+  }
+
+  .sidebar-item-icon{
+    margin-left: 5px;
+    font-size: 25px !important;
+  }
+
+  .sidebar-item-sub-icon{
+    color: mat-color($warn, 100);
+    margin-left: 5px;
+    font-size: 20px !important;
+  }
+
+  mat-icon{
+    color: mat-color($warn)
+  }
+
+  mat-nav-list :hover{
+    background-color: mat-color($warn, 100);
+  }
+
+  mat-list-item :hover{
+    background-color: mat-color($warn, 100);
+  }
+
+  .panel {
+    background-color: mat-color($primary);
+  }
+
+  .panel-primary {
+    border-color: mat-color($accent);
+  }
+
+  .panel-primary > .panel-heading {
+    background-color: mat-color($accent);
+    border-color: mat-color($accent);
+    color: mat-color($warn);
+  }
+
+  .form-control{
+    background-color: mat-color($accent);
+    color: invert(mat-color($primary));
+  }
+
+  .form-control ::placeholder{
+    color: invert(mat-color($primary));
+  }
+
+  .mat-drawer-container{
+    background-color: mat-color($background, background);
+  }
+
+  .mat-drawer {
+    background-color: mat-color($accent);
+  }
+
+  .import-form{
+    background: mat-color($accent);
+  }
+
+}
+
+// FOOTER
+@mixin footer-theme($theme) {
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, warn);
+
+  .footer{
+    background-color: mat-color($accent);
+  }
+
+  .parag_1{
+    color: mat-color($warn);
+  }
+
+}
+
+// TRY IT BLOCK
+@mixin try-it-block-theme($theme) {
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, warn);
+
+  .try-it-block {
+    background: mat-color($accent, 800);
+  }
+
+  .p1 {
+    color: white;
+  }
+
+  .p2 {
+    color: white;
+  }
+
+  .btn3 {
+    background: white;
+    border: 2px solid mat-color($warn);
+    color: black;
+  }
+
+}
+
+// DATATABLE
+@mixin ngx-datatable-theme($theme) {
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, warn);
+  $background: map-get($theme, background);
+  $foreground: map-get($theme, foreground);
+
+  .ngx-datatable.bootstrap {
+    border: solid 1px mat-color($accent);
+    .datatable-header-cell
+    {
+      border-bottom: solid 2px mat-color($accent);
+    }
+    .datatable-body-row
+    {
+      color: #000;
+
+      background-color: #dcdde3;
+      &:hover
+      {
+        background: mat-color($warn, 100);
+      }
+      &.datatable-row-even
+      {
+        background-color: darkgray;
+        &:hover
+        {
+          background: mat-color($warn, 100);
+        }
+      }
+    }
+    .datatable-footer {
+      background: #424242;
+      color: #ededed;
+      .datatable-pager {
+        ul {
+          li {
+            &:not(.disabled) {
+              &.active,
+              &:hover {
+                a {
+                  background-color: #545454;
+                }
+              }
+            }
+          }
+        }
+        a {
+          color: #ededed;
+        }
+      }
+    }
+  }
+}
+
+// LOGIN
+@mixin login-header($theme) {
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, warn);
+
+  .errMsg
+  {
+    color: mat-color($warn);
+  }
+
+  .forgot-pass
+  {
+    color: invert(mat-color($primary));
+  }
+
+  .gradient {
+    background: linear-gradient(51deg, mat-color($warn), #424242, invert(mat-color($warn)) );
+  }
+
+}
+
+// PASSWORD RESET & FORGOT
+@mixin password-forgot-theme($theme){
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, warn);
+
+  .forgot-form{
+    background: mat-color($accent);
+  }
+
+  .form-reset{
+    background: mat-color($accent);
+  }
+
+  .btn-approve2{
+    background: white;
+    color: #455a64;
+    border: 2px solid white;
+  }
+
+  .btn-approve{
+    background: white;
+    color: #455a64;
+  }
+
+  .btn-approve:hover{
+    background: mat-color($warn);
+    color: white;
+  }
+
+}
+
+// Typography
+$custom-typography: mat-typography-config(
+  $font-family: 'Roboto, monospace',
+  $headline: mat-typography-level(24px, 48px, 400),
+  $body-1: mat-typography-level(16px, 24px, 400)
+);
+
+// Default colors
+$my-app-primary: mat-palette($mat-gray, A100);
+$my-app-accent: mat-palette($mat-blue-grey, 900);
+$my-app-warn: mat-palette($mat-teal, 400, 100);
+
+$my-app-theme: mat-light-theme($my-app-primary, $my-app-accent, $my-app-warn);
+@include angular-material-typography($custom-typography);
+@include angular-material-theme($my-app-theme);
+@include mat-drawer-theme($my-app-theme);
+@include footer-theme($my-app-theme);
+@include ngx-datatable-theme($my-app-theme)
+@include try-it-block-theme($my-app-theme)
+@include login-header($my-app-theme);
+@include password-forgot-theme($my-app-theme);
+
+// Dark theme
+$dark-primary: mat-palette($mat-dark-billennium,900);
+$dark-accent:  mat-palette($mat-dark-billennium,700);
+$dark-warn:    mat-palette($mat-dark-billennium,600);
+$dark-theme:   mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
+.dark-theme {
+  @include angular-material-theme($dark-theme);
+  @include mat-drawer-theme($dark-theme);
+  @include footer-theme($dark-theme);
+  @include ngx-datatable-theme($dark-theme);
+  @include try-it-block-theme($dark-theme);
+  @include login-header($dark-theme);
+  @include password-forgot-theme($dark-theme);
+}

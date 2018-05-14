@@ -1,0 +1,88 @@
+.group-columns{
+  margin-top: 30px;
+}
+
+.groups-list{
+  float: left;
+  width: 40vh;
+  max-height: 80vh;
+  min-height: 80vh;
+  overflow-y: auto;
+}
+
+.groups-inner{
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  text-align: center;
+  font-size: 2.35vh;
+  margin-bottom: 2px;
+  cursor: default;
+}
+
+.clients-in-it{
+  float: left;
+  width: 85vh;
+  margin-left: 45px;
+  margin-right: 30px;
+  margin-bottom: 20px;
+}
+
+.client-filter{
+  margin-left: 20px;
+}
+
+.change-button{
+  margin-right: 20px;
+  float: right;
+}
+
+.selected-column{
+  float: left;
+  width: 40vh;
+  overflow-y: auto;
+  max-height: 80vh;
+  min-height: 80vh;
+}
+
+h3{
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.add-group-icon{
+  font-size: 30px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.double-click{
+  font-size: 11px;
+  font-style: italic;
+}
+
+.removeGroup{
+  color : black;
+  display: inline;
+  float: right;
+  cursor: pointer;
+  margin-right: 10px;
+  font-size: 3vh;
+  margin-top : 0.1vw;
+}
+
+
+.group-name{
+  margin-right: -20px;
+  display: inline;
+  cursor: pointer;
+}
+
+
+
+.clientsList{
+  float: left;
+  width: 110vh;
+  margin-left: 10vh;
+  margin-bottom: 20px;
+}

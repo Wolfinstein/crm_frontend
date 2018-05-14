@@ -1,0 +1,188 @@
+<div class="container" *ngIf="currentClient.client_type=='Company'">
+  <form class="form-control" (ngSubmit)="onClickEdit(currentClient.id, currentClient)">
+
+    <input value="{{currentClient.id}}"
+           name="idComp"
+           type="hidden"
+           id="idComp">
+
+
+    <div class="form-group">
+      <label for="emailComp">Email: </label>
+      <input value="{{currentClient.email}}"
+             class="form-control"
+             name="emailComp"
+             type="text"
+             id="emailComp"
+             [(ngModel)]="currentClient.email">
+    </div>
+
+    <div class="form-group">
+      <label for="phoneComp">Phone: </label>
+      <input type="text"
+             value="{{currentClient.phone}}"
+             class="form-control"
+             name="phoneComp"
+             id="phoneComp"
+             [(ngModel)]="currentClient.phone">
+    </div>
+
+    <div class="form-group">
+      <label for="descriptionComp">Opis: </label>
+      <input type="text"
+             value="{{currentClient.description}}"
+             class="form-control"
+             name="descriptionComp"
+             id="descriptionComp"
+             [(ngModel)]="currentClient.description"
+      >
+    </div>
+    <div class="form-group">
+      <label for="name">Name: </label>
+      <input type="text"
+             value="{{currentClient.name}}"
+             class="form-control"
+             name="name"
+             id="name"
+             [(ngModel)]="currentClient.name"
+      >
+    </div>
+    <div class="form-group">
+      <label for="nip">nip: </label>
+      <input type="text"
+             value="{{currentClient.nip}}"
+             class="form-control"
+             name="nip"
+             id="nip"
+             [(ngModel)]="currentClient.nip"
+      >
+    </div>
+    <div class="form-group">
+      <label for="regon">Regon: </label>
+      <input type="text"
+             value="{{currentClient.regon}}"
+             class="form-control"
+             name="regon"
+             id="regon"
+             [(ngModel)]="currentClient.regon"
+      >
+    </div>
+    <div class="form-group">
+      <label for="trade">Trade: </label>
+      <input type="text"
+             value="{{currentClient.trade}}"
+             class="form-control"
+             name="trade"
+             id="trade"
+             [(ngModel)]="currentClient.trade"
+      >
+    </div>
+    <div class="form-group">
+      <label for="type">Type: </label>
+      <input type="text"
+             value="{{currentClient.type}}"
+             class="form-control"
+             name="type"
+             id="type"
+             [(ngModel)]="currentClient.type"
+      >
+    </div>
+    <div class="form-group">
+      <label for="website">Website: </label>
+      <input type="text"
+             value="{{currentClient.website}}"
+             class="form-control"
+             name="website"
+             id="website"
+             [(ngModel)]="currentClient.website"
+      >
+    </div>
+
+    <button mat-raised-button color="accent" type="submit">Update Client</button>  <button mat-raised-button color="primary" (click)="onBack()">Back</button>
+
+  </form>
+</div>
+
+<div class="container" *ngIf="currentClient.client_type=='Individual'">
+  <form class="form-control" (ngSubmit)="onClickEdit(currentClient.id, currentClient)">
+
+    <input value="{{currentClient.id}}"
+           name="idIndivi"
+           type="hidden"
+           id="idIndivi">
+
+
+    <div class="form-group">
+      <label for="emailIndivi">Email: </label>
+      <input value="{{currentClient.email}}"
+             class="form-control"
+             name="emailIndivi"
+             type="text"
+             id="emailIndivi"
+             [(ngModel)]="currentClient.email">
+    </div>
+
+    <div class="form-group">
+      <label for="phoneIndivi">Phone: </label>
+      <input type="text"
+             value="{{currentClient.phone}}"
+             class="form-control"
+             name="phoneIndivi"
+             id="phoneIndivi"
+             [(ngModel)]="currentClient.phone">
+    </div>
+
+    <div class="form-group">
+      <label for="descriptionIndivi">Description: </label>
+      <input type="text"
+             value="{{currentClient.description}}"
+             class="form-control"
+             name="descriptionIndivi"
+             id="descriptionIndivi"
+             [(ngModel)]="currentClient.description"
+      >
+    </div>
+    <div class="form-group">
+      <label for="firstName">First Name: </label>
+      <input type="text"
+             value="{{currentClient.firstName}}"
+             class="form-control"
+             name="firstName"
+             id="firstName"
+             [(ngModel)]="currentClient.firstName"
+      >
+    </div>
+
+    <div class="form-group">
+      <label for="lastName">Last Name: </label>
+      <input type="text"
+             value="{{currentClient.lastName}}"
+             class="form-control"
+             name="lastName"
+             id="lastName"
+             [(ngModel)]="currentClient.lastName"
+      >
+    </div>
+
+    <div class="form-group">
+      <label for="pesel">Pesel: </label>
+      <input type="text"
+             value="{{currentClient.pesel}}"
+             class="form-control"
+             name="pesel"
+             id="pesel"
+             [(ngModel)]="currentClient.pesel"
+      >
+    </div>
+    <p class="errMsg" *ngIf="errMsg">{{errMsg}}</p>
+    <button mat-raised-button color="accent" type="submit">Update Client</button>  <button mat-raised-button color="primary" (click)="onBack()">Back</button>
+  </form>
+
+</div>
+
+
+
+
+
+
+

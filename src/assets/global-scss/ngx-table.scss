@@ -1,0 +1,86 @@
+.ngx-datatable.bootstrap {
+  margin: 20px;
+  box-shadow: none;
+  font-size: 15px;
+  .datatable-header {
+    height: unset !important;
+    .datatable-header-cell {
+      font-size: 18px;
+      font-weight: bold;
+      vertical-align: bottom;
+      padding: 0.60rem;
+      .datatable-header-cell-label {
+        line-height: 24px;
+      }
+    }
+  }
+  .datatable-body {
+    .datatable-body-row {
+
+      padding: 0.3rem;
+      vertical-align: top;
+      &:hover{
+      }
+      &.datatable-row-even {
+        &:hover{
+        }
+      }
+      &.active {
+      }
+      .datatable-body-cell {
+        text-align: left;
+        vertical-align: top;
+      }
+    }
+  }
+  .datatable-footer {
+
+    margin-top: -1px;
+    .page-count {
+      line-height: 50px;
+      height: 50px;
+      padding: 0 1.2rem;
+    }
+    .datatable-pager {
+      margin: 0 10px;
+      vertical-align: top;
+      ul {
+        li {
+          margin: 10px 0px;
+          &:not(.disabled) {
+            &.active,
+            &:hover {
+              a {
+                font-weight: bold;
+              }
+            }
+          }
+        }
+      }
+      a {
+        height: 22px;
+        min-width: 24px;
+        line-height: 22px;
+        padding: 0;
+        border-radius: 3px;
+        margin: 0 3px;
+        text-align: center;
+        text-decoration: none;
+        vertical-align: bottom;
+      }
+      .datatable-icon-left,
+      .datatable-icon-skip,
+      .datatable-icon-right,
+      .datatable-icon-prev {
+        font-size: 18px;
+        line-height: 27px;
+        padding: 0 3px;
+      }
+    }
+  }
+}
+
+.add-icon{
+  margin-left: 97%;
+  cursor: pointer;
+}

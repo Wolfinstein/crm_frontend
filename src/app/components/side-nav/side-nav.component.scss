@@ -1,0 +1,40 @@
+.content-container{
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+}
+
+.global-container {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+mat-icon{
+  float: left;
+}
+
+mat-sidenav{
+  margin-top: 64px;
+  visibility: visible !important;
+  transform: none ;
+}
+
+.right-one{
+  position: absolute;
+  cursor:pointer;
+  left: 97%;
+  top: 10vh;
+  font-size:30px;
+}
+
+.left-one{
+  font-size:30px;
+  position: absolute;
+  cursor:pointer;
+  top: 10vh;
+  left: 1%;
+}
+

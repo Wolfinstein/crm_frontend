@@ -1,0 +1,17 @@
+<form class="import-form">
+  <mat-card>
+    <mat-card-content>
+      You can import clients from CSV file in here. Bear in mind that it has to be correct format file without duplicates.
+    </mat-card-content>
+  </mat-card>
+
+  <img class="image-unlock" [src]="'./assets/images/import-icon.png'"/>
+
+
+  <input class="input-field" type="file" name="file" ngModel (change)="getFiles($event)" accept=".csv" required/>
+  <button class="btn-approve" mat-raised-button type="submit" (click)="importFromCSV()" >Send</button>
+  <div>
+    <p class="errMsg" *ngIf="errMsg.length > 3">{{errMsg}} </p>
+  </div>
+</form>
+

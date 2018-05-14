@@ -1,0 +1,21 @@
+mat-toolbar-row {
+  justify-content: space-between;
+}
+
+mat-toolbar{
+  height: 7vh;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.account_icon{
+  cursor:pointer;
+  font-size: 5vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 2vh;
+}
+

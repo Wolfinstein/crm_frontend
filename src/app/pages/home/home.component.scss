@@ -1,0 +1,40 @@
+.button_paragraph{
+  position: absolute;
+  z-index: 5;
+  left: 30vh;
+  top: 40vh;
+}
+
+.first_one{
+  margin: 0;
+  font-size: 35px;
+  color: white;
+}
+
+.second_one{
+  font-size: 25px;
+  color: white;
+}
+
+.btn1 {
+  border: 2px solid white;
+  color: white;
+  background: Transparent no-repeat;
+}
+
+.btn1:hover{
+  background: white;
+  color: #455a64;
+}
+
+.btn2 {
+  color : #455a64;
+  border: 2px solid white;
+}
+
+:host{
+  display: block;
+  width: 100%;
+}
+
+

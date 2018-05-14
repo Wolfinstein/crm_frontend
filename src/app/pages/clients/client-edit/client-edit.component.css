@@ -1,0 +1,47 @@
+.container{
+  padding-top: 2%;
+}
+
+.mat-raised-button{
+  margin-bottom: 5px;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+
+}
+
+li {
+  display: inline;
+}
+
+li a {
+  color: black;
+  float: left;
+  padding: 8px 16px;
+  text-decoration: none;
+}
+
+li a.active {
+  background-color: #c8e6c9;
+  color: #c8e6c9;
+}
+
+li a:hover {background-color: #c8e6c9;}
+
+.pagination-custom{
+
+  text-align: center;
+}
+
+.ngx-datatable{
+  width: 100%;
+  white-space:nowrap;
+}
+datatable-header{
+  white-space: nowrap;
+
+  text-align: -webkit-center;
+}
