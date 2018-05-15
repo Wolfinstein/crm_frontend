@@ -1,10 +1,9 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {ClientService} from "../../../services/api/client.service";
-import {ActivatedRoute, Router} from "@angular/router";
+import {ActivatedRoute} from "@angular/router";
 import {AddressModel} from "../../../models/address.model";
 import {ContactModel} from "../../../models/contact.model";
 import {ContractorModel} from "../../../models/contractor.model";
-import {DocumentModel} from "../../../models/document.model";
 import {saveAs} from "file-saver";
 import {ActivityModel} from "../../../models/activity.model";
 import {UserInfoService} from "../../../services/user-info.service";
@@ -24,7 +23,6 @@ export class ClientDetailsComponent implements OnInit {
   client_contacts: any[] =[];
   client_contractors: any[] =[];
   client_documents: any[] = [];
-  client_orders: any[] = [];
   editing = {};
   errMsg : string = "";
   tempString : string;
@@ -74,7 +72,6 @@ export class ClientDetailsComponent implements OnInit {
     this.getClients();
     this.getActivities();
     this.getDocuments();
-    this.getOrders();
   }
 
   getClients(){
@@ -100,59 +97,6 @@ export class ClientDetailsComponent implements OnInit {
           console.log('No activities');
         }
       })
-  }
-
-  updateOrder(event, cell, rowIndex) {
-    this.errMsg = "";
-    this.editing[rowIndex + '-' + cell] = false;
-    let form = this.client_orders[rowIndex];
-    this.tempString = this.client_orders[rowIndex][cell];
-    this.client_orders[rowIndex][cell] = event.target.value;
-
-    this.clientService.editOrder(form).subscribe(data => {
-      },
-      error =>{
-        if(error.status === 400)
-        {
-          this.errMsg = "Error occurred, you must pick one of those order status (Realized, InProgress, Unrealized, Canceled)";
-        }
-        this.client_orders[rowIndex][cell] = this.tempString;
-      });
-
-    if(this.client_orders[rowIndex][cell] != this.tempString)
-    {
-      this.activityService.addActivity(new ActivityModel('Order status edited by ' + this.userInfoService.getUserInfo().displayName , 'EditedOrder'),this.id);
-    }
-
-    this.client_orders = [...this.client_orders];
-
-  }
-
-
-  getOrders(){
-    this._route.params
-      .map(params => params['id'])
-      .switchMap(id => this.clientService.getClientOrders(id))
-      .subscribe(data => {
-        this.temp = [...data];
-        this.client_orders = data;
-      },error => {
-        if(error.status === 404){
-          console.log('No orders');
-        }
-      })
-  }
-
-  deleteOrders(id: number){
-    if(confirm("Are you sure about deleting this order ?")) {
-      this.clientService.addActivity(new ActivityModel('Order has been deleted by ' + this.userInfoService.getUserInfo().displayName, 'DeletedOrder'), this.id);
-      this.clientService.deleteOrder(id).subscribe((data) => {
-          if (data.status == 200 || data.status == 204) {
-            this.getOrders();
-          }
-        }
-      );
-    }
   }
 
   getDocuments(){
@@ -301,7 +245,6 @@ export class ClientDetailsComponent implements OnInit {
     }
 
   // Contractor
-
   updateContractor(event, cell, rowIndex) {
     this.errMsg = "";
     this.editing[rowIndex + '-' + cell] = false;

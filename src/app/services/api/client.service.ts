@@ -7,7 +7,6 @@ import {AddressModel} from "../../models/address.model";
 import {ContactModel} from "../../models/contact.model";
 import {ContractorModel} from "../../models/contractor.model";
 import {FormGroup} from "@angular/forms";
-import {OrderModel} from "../../models/order.model";
 
 @Injectable()
 export class ClientService {
@@ -160,7 +159,6 @@ export class ClientService {
     return this.apiRequest.post('groups/add', name);
   }
 
-
   editGroup(name : string, id: number)
   {
     return this.apiRequest.put('groups/edit/' + id, name);
@@ -179,28 +177,6 @@ export class ClientService {
     return this.apiRequest.get('groups/data', params );
   }
 
-  //Client Orders
-
-  editOrder(form : OrderModel) : Observable <any> {
-    return this.apiRequest.put('order/', form);
-  }
-
-  getClientOrders(id : number) : Observable<any> {
-    return this.apiRequest.get('order/client/' + id);
-  }
-
-  getOrder(id : number): Observable<any> {
-    return this.apiRequest.get('order/' +id );
-  }
-
-  deleteOrder(id : number) {
-    return this.apiRequest.delete('order/' + id);
-  }
-
-  addOrder(order: FormGroup, id : number){
-    return this.apiRequest.post("order/" + id, order);
-
-  }
 }
 
 

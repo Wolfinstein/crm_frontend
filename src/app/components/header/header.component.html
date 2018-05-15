@@ -1,7 +1,7 @@
 <mat-toolbar color="primary">
   <mat-toolbar-row>
-    <img *ngIf="IsLoggedIn()" style="height: 40px; width: 40px; margin-right: 20px; cursor: pointer" [src]="'./assets/images/logo_billennium.png'" [routerLink]="'/dashboard'" />
-    <img *ngIf="!IsLoggedIn()" style="height: 40px; width: 40px; margin-right: 20px; cursor: pointer" [src]="'./assets/images/logo_billennium.png'" [routerLink]="'/home'" />
+    <img *ngIf="IsLoggedIn()" style="height: 40px; width: 40px; margin-right: 20px; cursor: pointer" [src]="'./assets/images/logo.png'" [routerLink]="'/dashboard'" />
+    <img *ngIf="!IsLoggedIn()" style="height: 40px; width: 40px; margin-right: 20px; cursor: pointer" [src]="'./assets/images/logo.png'" [routerLink]="'/home'" />
     <!--<button mat-button class="header-buttons" [routerLink]="'/users'" *ngIf="showUserLink()" style="font-size: 17px" i18n>Users</button>-->
     <!--<button mat-button class="header-buttons" [routerLink]="'/clients'" *ngIf="IsLoggedIn()" style="font-size: 17px" i18n>Clients</button>-->
     <!--<button mat-button class="header-buttons" [routerLink]="'/calendar'" *ngIf="IsLoggedIn()" style="font-size: 17px" i18n>Calendar</button>-->

@@ -2,7 +2,7 @@
 @include mat-core();
 
 
-$mat-dark-billennium: (
+$mat-dark-custom-theme: (
   50 : #ffffff,
   100 : #FFE082,
   200 : #9fa8da,
@@ -379,9 +379,9 @@ $my-app-theme: mat-light-theme($my-app-primary, $my-app-accent, $my-app-warn);
 @include password-forgot-theme($my-app-theme);
 
 // Dark theme
-$dark-primary: mat-palette($mat-dark-billennium,900);
-$dark-accent:  mat-palette($mat-dark-billennium,700);
-$dark-warn:    mat-palette($mat-dark-billennium,600);
+$dark-primary: mat-palette($mat-dark-custom-theme,900);
+$dark-accent:  mat-palette($mat-dark-custom-theme,700);
+$dark-warn:    mat-palette($mat-dark-custom-theme,600);
 $dark-theme:   mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
 .dark-theme {
   @include angular-material-theme($dark-theme);

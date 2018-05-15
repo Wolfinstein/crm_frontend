@@ -71,11 +71,6 @@ import {ClientPipelineComponent} from "./pages/clients/client-pipeline/client.pi
 import {Ng2SearchPipeModule} from "ng2-search-filter";
 import {MultiselectDropdownModule} from "angular-2-dropdown-multiselect";
 import {EditGroupDialog, GroupsComponent, NewGroupDialog} from "./pages/clients/groups/groups.component";
-import { OrderDetailsComponent } from './pages/clients/order-details/order-details.component';
-import { OrderAddComponent } from './pages/clients/order-add/order-add.component';
-import { WareListComponent } from './pages/ware/ware-list/ware-list.component';
-import {WareService} from "./services/api/ware.service";
-import { OrderWareAddComponent } from './pages/clients/order-ware-add/order-ware-add.component';
 
 registerLocaleData(localePL, 'pl', localePLExtra);
 
@@ -152,11 +147,7 @@ registerLocaleData(localePL, 'pl', localePLExtra);
     ClientPipelineComponent,
     GroupsComponent,
     NewGroupDialog,
-    EditGroupDialog,
-    OrderDetailsComponent,
-    OrderAddComponent,
-    WareListComponent,
-    OrderWareAddComponent
+    EditGroupDialog
   ],
   providers:[
     AuthGuard,
@@ -169,8 +160,7 @@ registerLocaleData(localePL, 'pl', localePLExtra);
     ActivityService,
     DatePipe,
     ClientService,
-    CalendarService,
-    WareService
+    CalendarService
   ],
 
   bootstrap: [AppComponent]
