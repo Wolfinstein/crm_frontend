@@ -1,38 +1,32 @@
-import {Component, Input, OnDestroy, OnInit} from '@angular/core';
+import {Component, Input, OnDestroy} from '@angular/core';
 import {DragulaService} from "ng2-dragula";
 import {ClientService} from "../../../services/api/client.service";
-import {ClientModel} from "../../../models/client.model";
 import {ActivityModel} from "../../../models/activity.model";
 import {ActivityService} from "../../../services/api/activity.service";
 import {UserInfoService} from "../../../services/user-info.service";
-import {error} from "util";
 
 @Component({
   selector: 'client-pipeline',
   templateUrl: './client.pipeline.component.html',
   styleUrls: ['./client.pipeline.component.scss']
 })
-export class ClientPipelineComponent implements OnDestroy{
+export class ClientPipelineComponent implements OnDestroy {
 
   @Input('term') term: string;
 
-  clients_NewLead : any[] = [];
-  clients_ContactMode : any[] = [];
-  clients_Qualified : any[] = [];
-  clients_InNegotiations : any[] = [];
-  clients_Closed : any[] = [];
-  amount_list : any[] = [];
-  tempList : any[] = [];
+  clients_NewLead: any[] = [];
+  clients_ContactMode: any[] = [];
+  clients_Qualified: any[] = [];
+  clients_InNegotiations: any[] = [];
+  clients_Closed: any[] = [];
+  amount_list: any[] = [];
+  tempList: any[] = [];
 
   statusTypes = ['NewLead', 'ContactMade', 'Qualified', 'InNegotiation', 'Closed'];
 
-  sort(prop: string, array : any) {
-    return array.sort((a, b) => a[prop] > b[prop] ? 1 : a[prop] === b[prop] ? 0 : -1);
-  }
-
-  constructor(private clientService: ClientService, private dragulaService: DragulaService, private activityService : ActivityService, private userInfoService : UserInfoService) {
-      this.fillLists();
-      dragulaService.setOptions('first-bag', {
+  constructor(private clientService: ClientService, private dragulaService: DragulaService, private activityService: ActivityService, private userInfoService: UserInfoService) {
+    this.fillLists();
+    dragulaService.setOptions('first-bag', {
       moves: (el, source, handle, sibling) => !el.classList.contains('no-drag')
     });
 
@@ -42,13 +36,11 @@ export class ClientPipelineComponent implements OnDestroy{
       this.fillAmountsList();
       let statusNumber = this.checkLengthChange(this.amount_list, this.tempList);
 
-      if(statusNumber[0] != statusNumber[1])
-      {
+      if (statusNumber[0] != statusNumber[1]) {
         this.clientService.updateStatus(id, this.statusTypes[statusNumber[1]]).subscribe();
-        this.activityService.addActivity(new ActivityModel( 'Status changed from ' + this.statusTypes[this.tempList[0]] + ' to ' + this.statusTypes[this.tempList[1]] + ' by ' + this.userInfoService.getUserInfo().displayName, 'StatusChanged'), id);
+        this.activityService.addActivity(new ActivityModel('Status changed' + this.userInfoService.getUserInfo().displayName, 'StatusChanged'), id);
         this.term = "";
-        setTimeout(() =>
-          {
+        setTimeout(() => {
             this.fillLists();
           },
           200);
@@ -59,9 +51,12 @@ export class ClientPipelineComponent implements OnDestroy{
     });
   }
 
-  checkLengthChange(newList : any[], tmpList : any[]) : any
-  {
-    let outList : Array<number> = [0, 0];
+  sort(prop: string, array: any) {
+    return array.sort((a, b) => a[prop] > b[prop] ? 1 : a[prop] === b[prop] ? 0 : -1);
+  }
+
+  checkLengthChange(newList: any[], tmpList: any[]): any {
+    let outList: Array<number> = [0, 0];
     for (let i = 0; i < newList.length; i++) {
       if (newList[i] != tmpList[i]) {
         if (newList[i] < tmpList[i]) {
@@ -75,8 +70,7 @@ export class ClientPipelineComponent implements OnDestroy{
     return outList;
   }
 
-  fillAmountsList()
-  {
+  fillAmountsList() {
     this.amount_list =
       [
         this.clients_NewLead.length,
@@ -87,18 +81,7 @@ export class ClientPipelineComponent implements OnDestroy{
       ]
   }
 
-  private onDropModel(args: any): number {
-    let [el, target, source] = args;
-
-    return el.innerText.substring(el.innerText.indexOf('!') + 1, el.innerText.indexOf('$'))
-  }
-
-  private onRemoveModel(args: any): void {
-    let [el, source] = args;
-  }
-
-  fillLists()
-  {
+  fillLists() {
     this.clientService.getAllClientPerTypes()
       .subscribe(data => {
         this.clients_NewLead = data[0];
@@ -114,6 +97,15 @@ export class ClientPipelineComponent implements OnDestroy{
     this.dragulaService.destroy("first-bag");
   }
 
+  private onDropModel(args: any): number {
+    let [el, target, source] = args;
+
+    return el.innerText.substring(el.innerText.indexOf('!') + 1, el.innerText.indexOf('$'))
+  }
+
+  private onRemoveModel(args: any): void {
+    let [el, source] = args;
+  }
 
 
 }

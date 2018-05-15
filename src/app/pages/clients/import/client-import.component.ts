@@ -1,5 +1,5 @@
 import {Component, OnInit} from "@angular/core";
-import { Router} from "@angular/router";
+import {Router} from "@angular/router";
 import {ClientService} from "../../../services/api/client.service";
 
 @Component({
@@ -7,43 +7,38 @@ import {ClientService} from "../../../services/api/client.service";
   templateUrl: './client-import.component.html',
   styleUrls: ['./client-import.component.scss']
 })
-export class ClientImportComponent implements OnInit{
+export class ClientImportComponent implements OnInit {
 
-  errMsg : string = "";
-  files : FileList = null;
-  constructor(private clientService: ClientService, private  router : Router)
-  {}
+  errMsg: string = "";
+  files: FileList = null;
 
-ngOnInit()
-{}
+  constructor(private clientService: ClientService, private  router: Router) {
+  }
 
-  importFromCSV()
-  {
+  ngOnInit() {
+  }
+
+  importFromCSV() {
     if (this.files != null) {
       let file: File = this.files[0];
 
-      if(file.size > 104857600)
-      {
+      if (file.size > 104857600) {
         this.errMsg = "File must not be bigger than 100mb"
       }
-      else
-      {
+      else {
         let formData: FormData = new FormData();
         formData.append('file', file);
         this.clientService.importClients(formData)
           .subscribe(
             data => {
-              if(data > 0)
-              {
+              if (data > 0) {
                 this.errMsg = "You have added " + data + " client/s, you will be redirected !";
-                setTimeout(() =>
-                  {
+                setTimeout(() => {
                     this.router.navigate(['/clients']);
                   },
                   3000);
               }
-              else
-              {
+              else {
                 this.errMsg = "You have not added any clients !";
               }
             },
@@ -51,14 +46,13 @@ ngOnInit()
               this.errMsg = "An unexpected error occurred, contact with Admin !";
             })
       }
-  }
-  else
-    {
+    }
+    else {
       this.errMsg = "You must choose CSV File first !"
     }
   }
 
-  getFiles(event){
+  getFiles(event) {
     this.files = event.target.files;
   }
 

@@ -1,51 +1,48 @@
 import {Component, OnInit} from '@angular/core';
-import { LoginService } from '../../services/api/login.service';
-import { Router } from '@angular/router';
+import {LoginService} from '../../services/api/login.service';
+import {Router} from '@angular/router';
 
 @Component({
-	templateUrl: './login.component.html',
+  templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
 
 export class LoginComponent implements OnInit {
-    model: any = {};
-    errMsg:string = '';
-    sub : any;
+  model: any = {};
+  errMsg: string = '';
+  sub: any;
+
   constructor(
-        private router: Router,
-        private loginService: LoginService) { }
+    private router: Router,
+    private loginService: LoginService) {
+  }
 
-    ngOnInit() : void {
-        this.loginService.logout(false);
-    }
+  ngOnInit(): void {
+    this.loginService.logout(false);
+  }
 
-    login() {
+  login() {
     this.sub =
-             this.loginService.getToken(this.model.username, this.model.password)
-            .subscribe(resp => {
+      this.loginService.getToken(this.model.username, this.model.password)
+        .subscribe(resp => {
 
-              if(resp.message === 'failure')
-              {
-                this.errMsg = 'Given credentials are not correct.';
-                this.router.navigate(['/login']);
-              }
-              else if(resp.message === 'server_failure')
-              {
-                this.errMsg = 'Server error occurred.';
-              }
-              else
-              {
-                setTimeout(() =>
-                {
+            if (resp.message === 'failure') {
+              this.errMsg = 'Given credentials are not correct.';
+              this.router.navigate(['/login']);
+            }
+            else if (resp.message === 'server_failure') {
+              this.errMsg = 'Server error occurred.';
+            }
+            else {
+              setTimeout(() => {
                   this.router.navigate(['/dashboard']);
                 },
                 700);
-              }
+            }
 
-              }
-            );
-    }
-
+          }
+        );
+  }
 
 
 }

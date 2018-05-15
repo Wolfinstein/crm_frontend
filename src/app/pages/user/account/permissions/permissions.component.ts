@@ -1,15 +1,17 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 
 @Component({
-  selector   : 'permission-list',
+  selector: 'permission-list',
   templateUrl: './permissions.component.html',
   styleUrls: ['./permissions.component.scss']
 })
 
 export class PermissionsComponent {
-  constructor(){}
   displayedColumns = ['permission', 'admin', 'manager', 'salesman'];
   dataSource = ELEMENT_DATA;
+
+  constructor() {
+  }
 }
 
 export interface Element {
@@ -24,4 +26,4 @@ const ELEMENT_DATA: Element[] = [
   {permission: 'Client Management', admin: 'full', manager: 'full', salesman: 'partial'},
   {permission: 'Calendar Management', admin: 'full', manager: 'full', salesman: 'full'},
   {permission: 'Tbd', admin: 'none', manager: 'none', salesman: 'none'},
- ];
+];

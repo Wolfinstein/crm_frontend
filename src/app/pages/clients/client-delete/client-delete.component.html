@@ -1,52 +1,52 @@
-
-<a *ngFor="let client of client" >
+<a *ngFor="let client of client">
   <div class="container" *ngIf="client.client_type=='Company'">
     <form class="form-control">
-    <div class="form-group">
-      <label for="idComp" id="idComp">Id: {{client.id}}</label>
-    </div>
+      <div class="form-group">
+        <label for="idComp" id="idComp">Id: {{client.id}}</label>
+      </div>
 
-    <div class="form-group">
-      <label for="client_typeComp" id="client_typeComp">Client type: {{client.client_type}}</label>
-    </div>
+      <div class="form-group">
+        <label for="client_typeComp" id="client_typeComp">Client type: {{client.client_type}}</label>
+      </div>
 
-    <div class="form-group">
-      <label for="emailComp" id="emailComp">Email: {{client.email}}</label>
-    </div>
+      <div class="form-group">
+        <label for="emailComp" id="emailComp">Email: {{client.email}}</label>
+      </div>
 
-    <div class="form-group">
-      <label for="phoneComp" id="phoneComp">Phone: {{client.phone}}</label>
-    </div>
+      <div class="form-group">
+        <label for="phoneComp" id="phoneComp">Phone: {{client.phone}}</label>
+      </div>
 
-    <div class="form-group">
-      <label for="descriptionComp" id="descriptionComp">Description: {{client.description}}</label>
-    </div>
+      <div class="form-group">
+        <label for="descriptionComp" id="descriptionComp">Description: {{client.description}}</label>
+      </div>
 
-    <div class="form-group">
-      <label for="name" id="name">Name: {{client.name}}</label>
-    </div>
+      <div class="form-group">
+        <label for="name" id="name">Name: {{client.name}}</label>
+      </div>
 
-    <div class="form-group">
-      <label for="nip" id="nip">Nip: {{client.nip}}</label>
-    </div>
+      <div class="form-group">
+        <label for="nip" id="nip">Nip: {{client.nip}}</label>
+      </div>
 
-    <div class="form-group">
-      <label for="regon" id="regon">Regon: {{client.regon}}</label>
-    </div>
+      <div class="form-group">
+        <label for="regon" id="regon">Regon: {{client.regon}}</label>
+      </div>
 
-    <div class="form-group">
-      <label for="trade" id="trade">Trade: {{client.trade}}</label>
-    </div>
+      <div class="form-group">
+        <label for="trade" id="trade">Trade: {{client.trade}}</label>
+      </div>
 
-    <div class="form-group">
-      <label for="type" id="type">Type: {{client.type}}</label>
-    </div>
+      <div class="form-group">
+        <label for="type" id="type">Type: {{client.type}}</label>
+      </div>
 
-    <div class="form-group">
-      <label for="website" id="website">Website: {{client.website}}</label>
-    </div>
+      <div class="form-group">
+        <label for="website" id="website">Website: {{client.website}}</label>
+      </div>
       <div>
-        <button mat-raised-button color="warn" (click)="onClickDelete()">Yes</button>  <button mat-raised-button color="primary" (click)="onBack()">No</button>
+        <button mat-raised-button color="warn" (click)="onClickDelete()">Yes</button>
+        <button mat-raised-button color="primary" (click)="onBack()">No</button>
       </div>
     </form>
   </div>
@@ -55,39 +55,40 @@
 <a *ngFor="let client of client">
   <div class="container" *ngIf="client.client_type=='Individual'">
     <form class="form-control">
-    <div class="form-group">
-      <label for="id" id="id">Id: {{client.id}}</label>
-    </div>
+      <div class="form-group">
+        <label for="id" id="id">Id: {{client.id}}</label>
+      </div>
 
-    <div class="form-group">
-      <label for="client_type" id="client_type">Client type: {{client.client_type}}</label>
-    </div>
+      <div class="form-group">
+        <label for="client_type" id="client_type">Client type: {{client.client_type}}</label>
+      </div>
 
-    <div class="form-group">
-      <label for="email" id="email">Email: {{client.email}}</label>
-    </div>
+      <div class="form-group">
+        <label for="email" id="email">Email: {{client.email}}</label>
+      </div>
 
-    <div class="form-group">
-      <label for="phone" id="phone">Phone: {{client.phone}}</label>
-    </div>
+      <div class="form-group">
+        <label for="phone" id="phone">Phone: {{client.phone}}</label>
+      </div>
 
-    <div class="form-group">
-      <label for="description" id="description">Description: {{client.description}}</label>
-    </div>
+      <div class="form-group">
+        <label for="description" id="description">Description: {{client.description}}</label>
+      </div>
 
-    <div class="form-group">
-      <label for="first_name" id="first_name">First name: {{client.firstName}}</label>
-    </div>
+      <div class="form-group">
+        <label for="first_name" id="first_name">First name: {{client.firstName}}</label>
+      </div>
 
-    <div class="form-group">
-      <label for="last_name" id="last_name">Last name: {{client.lastName}}</label>
-    </div>
+      <div class="form-group">
+        <label for="last_name" id="last_name">Last name: {{client.lastName}}</label>
+      </div>
 
-    <div class="form-group">
-      <label for="pesel" id="pesel">Pesel: {{client.pesel}}</label>
-    </div>
+      <div class="form-group">
+        <label for="pesel" id="pesel">Pesel: {{client.pesel}}</label>
+      </div>
       <div>
-        <button mat-raised-button color="warn" (click)="onClickDelete()">Yes</button>  <button mat-raised-button color="primary" (click)="onBack()">No</button>
+        <button mat-raised-button color="warn" (click)="onClickDelete()">Yes</button>
+        <button mat-raised-button color="primary" (click)="onBack()">No</button>
       </div>
     </form>
   </div>

@@ -1,7 +1,8 @@
-export class ContractorModel{
+export class ContractorModel {
   constructor(
     public name: string,
     public description: string,
-    public clientId : string
-  ) { }
+    public clientId: string
+  ) {
+  }
 }

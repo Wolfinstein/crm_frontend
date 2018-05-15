@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
+import {Injectable} from '@angular/core';
+import {Observable} from 'rxjs/Observable';
 import {ClientModel} from "../../models/client.model";
 import {ApiRequestService} from "./api-request.service";
 import {ActivityModel} from "../../models/activity.model";
@@ -12,13 +12,14 @@ import {FormGroup} from "@angular/forms";
 export class ClientService {
 
 
-  constructor(private apiRequest: ApiRequestService ) { }
+  constructor(private apiRequest: ApiRequestService) {
+  }
 
   addClient(client: FormGroup) {
     return this.apiRequest.post("client", client);
   }
 
-  getAllClientPerTypes() : Observable <any> {
+  getAllClientPerTypes(): Observable<any> {
     return this.apiRequest.get('clients/pipeline');
   }
 
@@ -31,7 +32,7 @@ export class ClientService {
   }
 
   getClient(id): Observable<any> {
-    return this.apiRequest.get('client/' +id );
+    return this.apiRequest.get('client/' + id);
   }
 
   deleteClient(id): Observable<any> {
@@ -52,48 +53,49 @@ export class ClientService {
   }
 
   deleteActivity(id): Observable<any> {
-  return this.apiRequest.delete('activity/' + id)};
+    return this.apiRequest.delete('activity/' + id)
+  };
 
   // address
 
-  editAddress(form : AddressModel) : Observable <any> {
-      return this.apiRequest.put('address/', form);
+  editAddress(form: AddressModel): Observable<any> {
+    return this.apiRequest.put('address/', form);
   }
 
-  addAddress(address: AddressModel, id : number) {
+  addAddress(address: AddressModel, id: number) {
     return this.apiRequest.post("address/add/" + id, address);
   }
 
-  deleteAddress(id : number) : Observable <any> {
-      return this.apiRequest.delete("address/"+ id);
+  deleteAddress(id: number): Observable<any> {
+    return this.apiRequest.delete("address/" + id);
   }
 
   // contact
 
-  editContact(contact : ContactModel) : Observable <any> {
+  editContact(contact: ContactModel): Observable<any> {
     return this.apiRequest.put('contact/', contact);
   }
 
-  addContact(contact: ContactModel, id : number) : Observable <any> {
+  addContact(contact: ContactModel, id: number): Observable<any> {
     return this.apiRequest.post("contact/add/" + id, contact);
   }
 
-  deleteContact(id : number) : Observable <any> {
-    return this.apiRequest.delete("contact/"+ id);
+  deleteContact(id: number): Observable<any> {
+    return this.apiRequest.delete("contact/" + id);
   }
 
   // contractor
 
-  editContractor(contractor : ContractorModel) : Observable <any> {
+  editContractor(contractor: ContractorModel): Observable<any> {
     return this.apiRequest.put('contractor/', contractor);
   }
 
-  addContractor(contractor: ContractorModel, id : number) : Observable <any> {
+  addContractor(contractor: ContractorModel, id: number): Observable<any> {
     return this.apiRequest.post("contractor/add/" + id, contractor);
   }
 
-  deleteContractor(id : number) : Observable <any> {
-    return this.apiRequest.delete("contractor/"+ id);
+  deleteContractor(id: number): Observable<any> {
+    return this.apiRequest.delete("contractor/" + id);
   }
 
   // document
@@ -102,79 +104,72 @@ export class ClientService {
     return this.apiRequest.get('documents/client/' + id);
   }
 
-  addDocument(document: FormData, id : number) : Observable <any> {
+  addDocument(document: FormData, id: number): Observable<any> {
     return this.apiRequest.upload("documents/" + id, document);
   }
 
-  deleteDocument(id : number) : Observable <any> {
-    return this.apiRequest.delete("documents/"+ id);
+  deleteDocument(id: number): Observable<any> {
+    return this.apiRequest.delete("documents/" + id);
   }
 
-  downloadDocument(id : number) : Observable <any> {
-    return this.apiRequest.download("documents/" +id);
+  downloadDocument(id: number): Observable<any> {
+    return this.apiRequest.download("documents/" + id);
   }
 
   // Import records from csv
 
-  importClients(file: FormData) : Observable <any> {
+  importClients(file: FormData): Observable<any> {
     return this.apiRequest.upload("clients/upload/csv", file);
   }
 
   // Client Stats
 
-  getClientsStats(year : number) : Observable <any> {
+  getClientsStats(year: number): Observable<any> {
     return this.apiRequest.get('statistics/clients/' + year);
   }
 
-  getClientsPercentage() : Observable <any> {
+  getClientsPercentage(): Observable<any> {
     return this.apiRequest.get('statistics/clients/percentage');
   }
 
   // Client Status
 
-  updateStatus(id : number, status : string)
-  {
+  updateStatus(id: number, status: string) {
     return this.apiRequest.put('update/status/' + id, status);
   }
 
   // Client Groups
 
-  getAllGroups() : Observable <any>
-  {
+  getAllGroups(): Observable<any> {
     return this.apiRequest.get('groups/all');
   }
 
-  getAllClientsByGroupId(id : number) : Observable <any>
-  {
+  getAllClientsByGroupId(id: number): Observable<any> {
     return this.apiRequest.get('groups/clients/' + id);
   }
 
-  changeGroupMembers(id : number, clients : any[])
-  {
+  changeGroupMembers(id: number, clients: any[]) {
     return this.apiRequest.post('groups/change/' + id, clients);
   }
 
-  addGroup(name : string)
-  {
+  addGroup(name: string) {
     return this.apiRequest.post('groups/add', name);
   }
 
-  editGroup(name : string, id: number)
-  {
+  editGroup(name: string, id: number) {
     return this.apiRequest.put('groups/edit/' + id, name);
   }
 
-  deleteGroup(id : number)
-  {
+  deleteGroup(id: number) {
     return this.apiRequest.delete('groups/delete/' + id);
   }
 
-  groupDropdown() : Observable<any>{
+  groupDropdown(): Observable<any> {
     return this.apiRequest.get('groups/dropdown');
   }
 
-  getFilteredClientsByGroups(params) : Observable<any>{
-    return this.apiRequest.get('groups/data', params );
+  getFilteredClientsByGroups(params): Observable<any> {
+    return this.apiRequest.get('groups/data', params);
   }
 
 }

@@ -6,7 +6,7 @@
   "apps": [
     {
       "root": "src",
-		"outDir": "../src/main/resources/static",
+      "outDir": "../src/main/resources/static",
       "assets": [
         "assets",
         "favicon.ico"
@@ -18,13 +18,14 @@
       "tsconfig": "tsconfig.app.json",
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
-      "styles":
-      [   "styles.css","styles.scss","theme.scss",
-          "../node_modules/bootstrap/dist/css/bootstrap.css",
-          "../node_modules/material-design-icons/iconfont/material-icons.css"
+      "styles": [
+        "styles.css",
+        "styles.scss",
+        "theme.scss",
+        "../node_modules/bootstrap/dist/css/bootstrap.css",
+        "../node_modules/material-design-icons/iconfont/material-icons.css"
       ],
-      "scripts":
-      [
+      "scripts": [
         "../node_modules/hammerjs/hammer.min.js",
         "../node_modules/file-saver/FileSaver.js",
         "../node_modules/jquery/dist/jquery.js",

@@ -1,4 +1,4 @@
-.content-container{
+.content-container {
   height: 100%;
   display: flex;
   align-items: center;
@@ -12,28 +12,28 @@
   flex-direction: column;
 }
 
-mat-icon{
+mat-icon {
   float: left;
 }
 
-mat-sidenav{
+mat-sidenav {
   margin-top: 64px;
   visibility: visible !important;
-  transform: none ;
+  transform: none;
 }
 
-.right-one{
+.right-one {
   position: absolute;
-  cursor:pointer;
+  cursor: pointer;
   left: 97%;
   top: 10vh;
-  font-size:30px;
+  font-size: 30px;
 }
 
-.left-one{
-  font-size:30px;
+.left-one {
+  font-size: 30px;
   position: absolute;
-  cursor:pointer;
+  cursor: pointer;
   top: 10vh;
   left: 1%;
 }

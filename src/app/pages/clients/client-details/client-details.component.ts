@@ -18,23 +18,23 @@ import {DatatableComponent} from "@swimlane/ngx-datatable";
 export class ClientDetailsComponent implements OnInit {
 
   client: Array<any>;
-  client_activities : any[] = [];
+  client_activities: any[] = [];
   client_addresses: any[] = [];
-  client_contacts: any[] =[];
-  client_contractors: any[] =[];
+  client_contacts: any[] = [];
+  client_contractors: any[] = [];
   client_documents: any[] = [];
   editing = {};
-  errMsg : string = "";
-  tempString : string;
-  sub_tables :boolean = false;
-  temp : any[]  =[];
+  errMsg: string = "";
+  tempString: string;
+  sub_tables: boolean = false;
+  temp: any[] = [];
   id = +this._route.snapshot.paramMap.get('id');
 
   @ViewChild(DatatableComponent) activity_table: DatatableComponent;
 
   constructor(private clientService: ClientService, private _route: ActivatedRoute,
-              private userInfoService : UserInfoService, private activityService :ActivityService,
-              private userInfo : UserInfoService) {
+              private userInfoService: UserInfoService, private activityService: ActivityService,
+              private userInfo: UserInfoService) {
     this.getActivities();
   }
 
@@ -48,24 +48,20 @@ export class ClientDetailsComponent implements OnInit {
   }
 
 
-  showHide(bool : boolean){
+  showHide(bool: boolean) {
     this.sub_tables = bool != false;
   }
 
   showButton(): boolean {
-    if(this.userInfo.isLoggedIn())
-    {
-      if (this.userInfo.getUserInfo().role != 'SALESMAN')
-      {
+    if (this.userInfo.isLoggedIn()) {
+      if (this.userInfo.getUserInfo().role != 'SALESMAN') {
         return true;
       }
     }
-    else
-    {
+    else {
       return false;
     }
   }
-
 
 
   ngOnInit() {
@@ -74,7 +70,7 @@ export class ClientDetailsComponent implements OnInit {
     this.getDocuments();
   }
 
-  getClients(){
+  getClients() {
     this.clientService.getClient(this.id).subscribe(data => {
       this.client = [data];
       this.client_addresses = data.addresses;
@@ -85,28 +81,28 @@ export class ClientDetailsComponent implements OnInit {
     })
   }
 
-  getActivities(){
-     this._route.params
+  getActivities() {
+    this._route.params
       .map(params => params['id'])
       .switchMap(id => this.clientService.getActivity(id))
       .subscribe(data => {
         this.temp = [...data];
         this.client_activities = data;
-      },error => {
-        if(error.status === 404){
+      }, error => {
+        if (error.status === 404) {
           console.log('No activities');
         }
       })
   }
 
-  getDocuments(){
+  getDocuments() {
     this._route.params
       .map(params => params['id'])
       .switchMap(id => this.clientService.getDocuments(id))
       .subscribe(data => {
         this.client_documents = data;
-      },error => {
-        if(error.status === 404){
+      }, error => {
+        if (error.status === 404) {
           console.log('No documents');
         }
       })
@@ -124,31 +120,28 @@ export class ClientDetailsComponent implements OnInit {
 
     this.clientService.editAddress(form).subscribe(data => {
       },
-      error =>{
-        if(error.status === 409)
-        {
+      error => {
+        if (error.status === 409) {
           this.errMsg = "Error occurred, there must not be more than one HOME address";
         }
-        else if(error.status === 400)
-        {
+        else if (error.status === 400) {
           this.errMsg = "Error occurred, you must pick one of those address types (HOME, BUSINESS, DELIVERY, BILLING)";
         }
         this.client_addresses[rowIndex][cell] = this.tempString;
       });
 
-    if(this.client_addresses[rowIndex][cell] != this.tempString)
-    {
-      this.activityService.addActivity(new ActivityModel(form.addressType + '  address edited by ' + this.userInfoService.getUserInfo().displayName , 'EditedAddress'),this.id);
+    if (this.client_addresses[rowIndex][cell] != this.tempString) {
+      this.activityService.addActivity(new ActivityModel(form.addressType + '  address edited by ' + this.userInfoService.getUserInfo().displayName, 'EditedAddress'), this.id);
     }
 
     this.client_addresses = [...this.client_addresses];
 
   }
 
-  addAddress(){
+  addAddress() {
     let client_id = +this._route.snapshot.paramMap.get('id');
 
-    let address : AddressModel = {
+    let address: AddressModel = {
       addressType: "BUSINESS",
       city: "new",
       country: "new",
@@ -156,17 +149,17 @@ export class ClientDetailsComponent implements OnInit {
       state: "new",
       street: "new",
       zipCode: "new",
-      clientId : client_id.toString()
+      clientId: client_id.toString()
     };
 
-    this.clientService.addAddress(address, client_id).subscribe(data =>{
+    this.clientService.addAddress(address, client_id).subscribe(data => {
       this.getClients();
     });
-    this.activityService.addActivity(new ActivityModel('New address has been added by ' + this.userInfoService.getUserInfo().displayName , 'AddedAddress'),this.id);
+    this.activityService.addActivity(new ActivityModel('New address has been added by ' + this.userInfoService.getUserInfo().displayName, 'AddedAddress'), this.id);
   }
 
-  deleteAddress(id: number){
-    if(confirm("Are you sure about deleting this address ?")) {
+  deleteAddress(id: number) {
+    if (confirm("Are you sure about deleting this address ?")) {
       this.activityService.addActivity(new ActivityModel('Address has been deleted by ' + this.userInfoService.getUserInfo().displayName, 'DeletedAddress'), this.id);
       this.clientService.deleteAddress(id).subscribe((data) => {
           if (data.status == 200 || data.status == 204) {
@@ -188,23 +181,20 @@ export class ClientDetailsComponent implements OnInit {
 
     this.clientService.editContact(form).subscribe(data => {
       },
-      error =>{
-        if(error.status === 409)
-        {
+      error => {
+        if (error.status === 409) {
           console.log(error.status);
           this.errMsg = "Error occurred";
         }
-        else if(error.status === 400)
-        {
+        else if (error.status === 400) {
           console.log(error.status);
           this.errMsg = "Error occurred";
         }
         this.client_contacts[rowIndex][cell] = this.tempString;
       });
 
-    if(this.client_contacts[rowIndex][cell] != this.tempString)
-    {
-      this.activityService.addActivity(new ActivityModel('Contact ' + form.name + ' ' + form.surname + ' has been edited by ' + this.userInfoService.getUserInfo().displayName , 'EditedContact'),this.id);
+    if (this.client_contacts[rowIndex][cell] != this.tempString) {
+      this.activityService.addActivity(new ActivityModel('Contact ' + form.name + ' ' + form.surname + ' has been edited by ' + this.userInfoService.getUserInfo().displayName, 'EditedContact'), this.id);
     }
 
 
@@ -212,29 +202,29 @@ export class ClientDetailsComponent implements OnInit {
 
   }
 
-  addContact(){
+  addContact() {
     let client_id = +this._route.snapshot.paramMap.get('id');
 
-    let contact : ContactModel = {
+    let contact: ContactModel = {
       name: "new",
       surname: "new",
-      email : "example@example.com",
+      email: "example@example.com",
       position: "new",
-      phone : "123-123-123",
-      description : "new",
-      clientId : client_id.toString()
+      phone: "123-123-123",
+      description: "new",
+      clientId: client_id.toString()
     };
 
-    this.clientService.addContact(contact, client_id).subscribe(data =>{
+    this.clientService.addContact(contact, client_id).subscribe(data => {
       this.getClients();
     });
-    this.activityService.addActivity(new ActivityModel('New contact has been added by ' + this.userInfoService.getUserInfo().displayName , 'AddedContact'),this.id);
+    this.activityService.addActivity(new ActivityModel('New contact has been added by ' + this.userInfoService.getUserInfo().displayName, 'AddedContact'), this.id);
 
   }
 
-  deleteContact(id: number){
-    if(confirm("Are you sure about deleting this contact ?")) {
-      this.activityService.addActivity(new ActivityModel('Contact has been deleted by ' + this.userInfoService.getUserInfo().displayName , 'DeletedContact'),this.id);
+  deleteContact(id: number) {
+    if (confirm("Are you sure about deleting this contact ?")) {
+      this.activityService.addActivity(new ActivityModel('Contact has been deleted by ' + this.userInfoService.getUserInfo().displayName, 'DeletedContact'), this.id);
       this.clientService.deleteContact(id).subscribe((data) => {
           if (data.status == 200 || data.status == 204) {
             this.getClients();
@@ -242,7 +232,7 @@ export class ClientDetailsComponent implements OnInit {
         }
       );
     }
-    }
+  }
 
   // Contractor
   updateContractor(event, cell, rowIndex) {
@@ -254,48 +244,45 @@ export class ClientDetailsComponent implements OnInit {
 
     this.clientService.editContractor(form).subscribe(data => {
       },
-      error =>{
-        if(error.status === 409)
-        {
+      error => {
+        if (error.status === 409) {
           console.log(error.status);
           this.errMsg = "Error occurred";
         }
-        else if(error.status === 400)
-        {
+        else if (error.status === 400) {
           console.log(error.status);
           this.errMsg = "Error occurred";
         }
         this.client_contractors[rowIndex][cell] = this.tempString;
       });
 
-    if(this.client_contractors[rowIndex][cell] != this.tempString)
-    {
-      this.activityService.addActivity(new ActivityModel('Contractor ' + form.name + ' has been edited by ' + this.userInfoService.getUserInfo().displayName , 'EditedContractor'),this.id);
+    if (this.client_contractors[rowIndex][cell] != this.tempString) {
+      this.activityService.addActivity(new ActivityModel('Contractor ' + form.name + ' has been edited by ' + this.userInfoService.getUserInfo().displayName, 'EditedContractor'), this.id);
     }
 
     this.client_contractors = [...this.client_contractors];
 
   }
 
-  addContractor(){
+  addContractor() {
     let client_id = +this._route.snapshot.paramMap.get('id');
 
-    let contractor : ContractorModel = {
+    let contractor: ContractorModel = {
       name: "new",
-      description : "new",
-      clientId : client_id.toString()
+      description: "new",
+      clientId: client_id.toString()
     };
 
-    this.clientService.addContractor(contractor, client_id).subscribe(data =>{
+    this.clientService.addContractor(contractor, client_id).subscribe(data => {
       this.getClients();
     });
-    this.activityService.addActivity(new ActivityModel('New contractor has been added by ' + this.userInfoService.getUserInfo().displayName , 'AddedContractor'),this.id);
+    this.activityService.addActivity(new ActivityModel('New contractor has been added by ' + this.userInfoService.getUserInfo().displayName, 'AddedContractor'), this.id);
 
   }
 
-  deleteContractor(id: number){
-    if(confirm("Are you sure about deleting this contractor ?")) {
-      this.activityService.addActivity(new ActivityModel('Contractor has been deleted by ' + this.userInfoService.getUserInfo().displayName , 'DeletedContractor'),this.id);
+  deleteContractor(id: number) {
+    if (confirm("Are you sure about deleting this contractor ?")) {
+      this.activityService.addActivity(new ActivityModel('Contractor has been deleted by ' + this.userInfoService.getUserInfo().displayName, 'DeletedContractor'), this.id);
       this.clientService.deleteContractor(id).subscribe((data) => {
           if (data.status == 200 || data.status == 204) {
             this.getClients();
@@ -307,10 +294,9 @@ export class ClientDetailsComponent implements OnInit {
 
   // Document
 
-  deleteFile(id: number){
-    if(confirm("Are you sure about deleting this document ?"))
-    {
-      this.activityService.addActivity(new ActivityModel('File has been deleted by ' + this.userInfoService.getUserInfo().displayName , 'DeletedFile'),this.id);
+  deleteFile(id: number) {
+    if (confirm("Are you sure about deleting this document ?")) {
+      this.activityService.addActivity(new ActivityModel('File has been deleted by ' + this.userInfoService.getUserInfo().displayName, 'DeletedFile'), this.id);
 
       this.clientService.deleteDocument(id).subscribe((data) => {
           if (data.status == 200 || data.status == 204) {
@@ -319,19 +305,17 @@ export class ClientDetailsComponent implements OnInit {
         }
       );
     }
-    }
+  }
 
-  uploadFile(event){
+  uploadFile(event) {
     let fileList: FileList = event.target.files;
     if (fileList.length > 0) {
       let file: File = fileList[0];
 
-      if(file.size > 104857600)
-      {
+      if (file.size > 104857600) {
         this.errMsg = "File must not be bigger than 100mb"
       }
-      else
-      {
+      else {
         let formData: FormData = new FormData();
         formData.append('file', file);
         this.clientService.addDocument(formData, this.id)
@@ -343,12 +327,11 @@ export class ClientDetailsComponent implements OnInit {
           )
       }
     }
-    this.activityService.addActivity(new ActivityModel('File ' + fileList.item(0).name + ' has been uploaded by ' + this.userInfoService.getUserInfo().displayName , 'UploadedFile'),this.id);
+    this.activityService.addActivity(new ActivityModel('File ' + fileList.item(0).name + ' has been uploaded by ' + this.userInfoService.getUserInfo().displayName, 'UploadedFile'), this.id);
   }
 
-  downloadFile(id : number, fileName : string)
-  {
-    this.clientService.downloadDocument(id).subscribe(data => saveAs(data,fileName.split("\\.", 2)[0]));
+  downloadFile(id: number, fileName: string) {
+    this.clientService.downloadDocument(id).subscribe(data => saveAs(data, fileName.split("\\.", 2)[0]));
   }
 
 

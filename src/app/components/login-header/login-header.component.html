@@ -1,9 +1,11 @@
-    <form style="padding-top: 15px" name="form" (ngSubmit)="login()">
-        <input class="form-control" type="text"     placeholder="Username" name="username" [(ngModel)]="model.username" #username="ngModel" required/>
-        <input class="form-control" type="password" placeholder="Password" name="password" [(ngModel)]="model.password" #password="ngModel" required/>
-        <button mat-raised-button color="accent" type="submit" i18n>Sign In</button>
-      <div class="footer-login">
-      <p *ngIf="errMsg" class="errMsg">{{errMsg}} </p>
-      <p class="forgot-pass" [routerLink]="'/forgot-password'" i18n>Forgot Password ? </p>
-      </div>
-    </form>
+<form style="padding-top: 15px" name="form" (ngSubmit)="login()">
+  <input class="form-control" type="text" placeholder="Username" name="username" [(ngModel)]="model.username"
+         #username="ngModel" required/>
+  <input class="form-control" type="password" placeholder="Password" name="password" [(ngModel)]="model.password"
+         #password="ngModel" required/>
+  <button mat-raised-button color="accent" type="submit" i18n>Sign In</button>
+  <div class="footer-login">
+    <p *ngIf="errMsg" class="errMsg">{{errMsg}} </p>
+    <p class="forgot-pass" [routerLink]="'/forgot-password'" i18n>Forgot Password ? </p>
+  </div>
+</form>

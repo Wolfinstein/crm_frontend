@@ -1,19 +1,19 @@
-import { BrowserModule }    from '@angular/platform-browser';
-import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import { HttpClientModule } from '@angular/common/http';
+import {BrowserModule} from '@angular/platform-browser';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {HttpClientModule} from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import { NgxDatatableModule } from '@swimlane/ngx-datatable';
-import { NgxChartsModule    } from '@swimlane/ngx-charts';
-import { ClarityModule      } from '@clr/angular';
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent }       from './app.component';
-import { HomeComponent         } from './pages/home/home.component';
-import { LogoutComponent       } from './pages/logout/logout.component';
-import { AppConfig        } from './app-config';
-import { UserInfoService  } from './services/user-info.service';
-import { AuthGuard        } from './services/auth_guard.service';
-import { ApiRequestService} from './services/api/api-request.service';
-import { LoginService     } from './services/api/login.service';
+import {NgxDatatableModule} from '@swimlane/ngx-datatable';
+import {NgxChartsModule} from '@swimlane/ngx-charts';
+import {ClarityModule} from '@clr/angular';
+import {AppRoutingModule} from './app-routing.module';
+import {AppComponent} from './app.component';
+import {HomeComponent} from './pages/home/home.component';
+import {LogoutComponent} from './pages/logout/logout.component';
+import {AppConfig} from './app-config';
+import {UserInfoService} from './services/user-info.service';
+import {AuthGuard} from './services/auth_guard.service';
+import {ApiRequestService} from './services/api/api-request.service';
+import {LoginService} from './services/api/login.service';
 import {UserComponent} from "./pages/user/user.component";
 import {UserService} from "./services/api/user.service";
 import {NgxPaginationModule} from "ngx-pagination";
@@ -39,7 +39,7 @@ import localePL from '@angular/common/locales/pl';
 import localePLExtra from '@angular/common/locales/extra/pl';
 import {DatePipe, registerLocaleData} from "@angular/common";
 import {UserDetailsComponent} from "./pages/user/user-details.component";
-import { ActivityDetailsComponent } from './pages/clients/activity-details/activity-details.component';
+import {ActivityDetailsComponent} from './pages/clients/activity-details/activity-details.component';
 import {ClientImportComponent} from "./pages/clients/import/client-import.component";
 import {DashboardComponent} from "./pages/dashboard/dashboard.component";
 import {HomeCarouselComponent} from "./components/home-carousel/carousel.component";
@@ -58,10 +58,13 @@ import {CalendarComponent} from "./pages/calendar/calendar.component";
 import {platformBrowserDynamic} from "@angular/platform-browser-dynamic";
 import {CalendarModule} from "angular-calendar";
 import {CalendarService} from "./services/api/calendar.service";
-import { CalendarAddEventComponent } from './pages/calendar/calendar-add-event/calendar-add-event.component';
-import { CalendarEditEventComponent } from './pages/calendar/calendar-edit-event/calendar-edit-event.component';
+import {CalendarAddEventComponent} from './pages/calendar/calendar-add-event/calendar-add-event.component';
+import {CalendarEditEventComponent} from './pages/calendar/calendar-edit-event/calendar-edit-event.component';
 import {
-  NgbCollapseModule, NgbDatepickerModule, NgbModalModule, NgbModule,
+  NgbCollapseModule,
+  NgbDatepickerModule,
+  NgbModalModule,
+  NgbModule,
   NgbTimepickerModule
 } from "@ng-bootstrap/ng-bootstrap";
 import {AmaEmailComponent} from "./pages/user/account/ama-email/ama-email.component";
@@ -149,7 +152,7 @@ registerLocaleData(localePL, 'pl', localePLExtra);
     NewGroupDialog,
     EditGroupDialog
   ],
-  providers:[
+  providers: [
     AuthGuard,
     UserInfoService,
     ApiRequestService,
@@ -166,8 +169,8 @@ registerLocaleData(localePL, 'pl', localePLExtra);
   bootstrap: [AppComponent]
 })
 
-export class AppModule
-{
+export class AppModule {
 
 }
+
 platformBrowserDynamic().bootstrapModule(AppModule);

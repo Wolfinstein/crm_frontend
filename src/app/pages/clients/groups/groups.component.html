@@ -9,19 +9,23 @@
       <p class="group-name" (dblclick)="editGroup()" (click)="showGroupMembers(group.id, group.name)">{{group.name}}</p>
       <mat-icon (click)="deleteGroup(group.id)" class="removeGroup">remove_circle</mat-icon>
     </div>
-    <div class="groups-inner" (click)="newGroup()"><mat-icon class="add-group-icon">add_circle_outline</mat-icon> </div>
-  <div *ngIf="errMsg" class="errMsg">{{errMsg}}</div>
+    <div class="groups-inner" (click)="newGroup()">
+      <mat-icon class="add-group-icon">add_circle_outline</mat-icon>
+    </div>
+    <div *ngIf="errMsg" class="errMsg">{{errMsg}}</div>
   </div>
 
   <div class="clients-in-it">
     <h3>{{groupName}}</h3>
     <mat-form-field class="example-full-width">
-    <input matInput class="client-filter"
-      type='text'
-      placeholder='Type to filter'
-      (keyup)='updateFilter($event)'>
+      <input matInput class="client-filter"
+             type='text'
+             placeholder='Type to filter'
+             (keyup)='updateFilter($event)'>
     </mat-form-field>
-    <button class="change-button" mat-raised-button color="warn" (click)="changeGroupMembers(groupId, selected)">Change Members</button>
+    <button class="change-button" mat-raised-button color="warn" (click)="changeGroupMembers(groupId, selected)">Change
+      Members
+    </button>
     <ngx-datatable
       #table
       class="ngx-datatable bootstrap"
@@ -57,7 +61,9 @@
       </ngx-datatable-column>
       <ngx-datatable-column [flexGrow]="0.7">
         <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-          <mat-icon  mat-icon-button color="primary" style="color:black; cursor: pointer" [routerLink]="'/client/' + row.id">pageview</mat-icon>
+          <mat-icon mat-icon-button color="primary" style="color:black; cursor: pointer"
+                    [routerLink]="'/client/' + row.id">pageview
+          </mat-icon>
         </ng-template>
       </ngx-datatable-column>
     </ngx-datatable>
@@ -69,7 +75,8 @@
     <ul>
       <li *ngFor='let sel of selected'>
         <p style="cursor: pointer" (click)="toClient(sel.id)" *ngIf="sel.client_type.startsWith('C')">{{sel.name}}</p>
-        <p style="cursor: pointer" (click)="toClient(sel.id)" *ngIf="sel.client_type.startsWith('I')">{{sel.firstName + ' ' + sel.lastName}}</p>
+        <p style="cursor: pointer" (click)="toClient(sel.id)" *ngIf="sel.client_type.startsWith('I')">{{sel.firstName +
+          ' ' + sel.lastName}}</p>
       </li>
       <li *ngIf="!selected.length">No Selections</li>
     </ul>

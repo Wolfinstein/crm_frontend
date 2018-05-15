@@ -1,4 +1,4 @@
-.import-form{
+.import-form {
   height: 55vh;
   width: 80vh;
   position: relative;
@@ -14,7 +14,7 @@
   height: 5vh;
 }
 
-.input-field{
+.input-field {
   position: absolute;
   top: 65%;
   left: 50%;
@@ -23,7 +23,7 @@
   height: 5vh;
 }
 
-.errMsg{
+.errMsg {
   font-size: 16px;
   position: absolute;
   top: 93%;
@@ -31,13 +31,13 @@
   transform: translate(-50%, -50%);
 }
 
-mat-card{
+mat-card {
   height: 10vh;
   border-top-right-radius: 2vh;
   position: relative;
 }
 
-mat-card-content{
+mat-card-content {
   font-size: 2vh;
   text-align: center;
   position: absolute;
@@ -51,13 +51,12 @@ mat-card-content{
 
 }
 
-.image-unlock{
+.image-unlock {
   position: absolute;
   top: 25%;
   left: 38%;
   width: 18vh;
   height: 18vh;
   -webkit-filter: grayscale(0.7) !important;
-
 
 }

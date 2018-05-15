@@ -14,10 +14,10 @@
     [footerHeight]="30"
     [rows]="rows"
     [limit]="15"
-    >
+  >
     <ngx-datatable-column name="Id" [flexGrow]="0.3"></ngx-datatable-column>
     <ngx-datatable-column [flexGrow]="0.8" name="Name">
-      <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row" >
+      <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
             <span
               title="Double click to edit"
               (dblclick)="editing[rowIndex + '-name'] = true"
@@ -25,11 +25,11 @@
               {{value}}
             </span>
         <input class="input-group"
-          autofocus
-          (blur)="updateValue($event, 'name', rowIndex)"
-          *ngIf="editing[rowIndex+ '-name']"
-          type="text"
-          [value]="value"
+               autofocus
+               (blur)="updateValue($event, 'name', rowIndex)"
+               *ngIf="editing[rowIndex+ '-name']"
+               type="text"
+               [value]="value"
         />
       </ng-template>
     </ngx-datatable-column>
@@ -42,11 +42,11 @@
               {{value}}
             </span>
         <input class="input-group"
-          autofocus
-          (blur)="updateValue($event, 'surname', rowIndex)"
-          *ngIf="editing[rowIndex+ '-surname']"
-          type="text"
-          [value]="value"
+               autofocus
+               (blur)="updateValue($event, 'surname', rowIndex)"
+               *ngIf="editing[rowIndex+ '-surname']"
+               type="text"
+               [value]="value"
         />
       </ng-template>
     </ngx-datatable-column>
@@ -79,19 +79,20 @@
               {{value}}
             </span>
         <input class="input-group"
-          autofocus
-          (blur)="updateValue($event, 'email', rowIndex)"
-          *ngIf="editing[rowIndex+ '-email']"
-          type="text"
-          [value]="value"
+               autofocus
+               (blur)="updateValue($event, 'email', rowIndex)"
+               *ngIf="editing[rowIndex+ '-email']"
+               type="text"
+               [value]="value"
         />
       </ng-template>
     </ngx-datatable-column>
     <ngx-datatable-column *ngIf="isAdmin()" [flexGrow]="0.8">
       <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-        <mat-icon  mat-icon-button color="primary" style="color:black" [routerLink]="'/users/' + row.id">pageview</mat-icon>
-        <mat-icon  mat-icon-button color="accent" [routerLink]="'/users/edit/' + row.id">edit</mat-icon>
-        <mat-icon  mat-icon-button color="warn" (click)="deleteUser(row.id)">delete</mat-icon>
+        <mat-icon mat-icon-button color="primary" style="color:black" [routerLink]="'/users/' + row.id">pageview
+        </mat-icon>
+        <mat-icon mat-icon-button color="accent" [routerLink]="'/users/edit/' + row.id">edit</mat-icon>
+        <mat-icon mat-icon-button color="warn" (click)="deleteUser(row.id)">delete</mat-icon>
       </ng-template>
     </ngx-datatable-column>
   </ngx-datatable>
@@ -106,7 +107,6 @@
       <option value="50">50</option>
     </select>
   </label>
-
 
 
   <div class="errMsg" *ngIf="errMsg.length > 2">{{errMsg}}</div>

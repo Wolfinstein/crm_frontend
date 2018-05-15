@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 
 @Component({
   selector: 'try-it',
@@ -6,9 +6,9 @@ import {Component, OnInit} from '@angular/core';
   templateUrl: './try-it.component.html',
 })
 
-export class TryItComponent  {
+export class TryItComponent {
 
-  constructor(){
+  constructor() {
   }
 
 }

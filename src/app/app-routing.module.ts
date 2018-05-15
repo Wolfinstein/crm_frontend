@@ -1,7 +1,7 @@
-import { LogoutComponent       }   from './pages/logout/logout.component';
+import {LogoutComponent} from './pages/logout/logout.component';
 import {UserComponent} from "./pages/user/user.component";
-import { AuthGuard } from './services/auth_guard.service';
-import { PageNotFoundComponent }  from './pages/404/page-not-found.component';
+import {AuthGuard} from './services/auth_guard.service';
+import {PageNotFoundComponent} from './pages/404/page-not-found.component';
 import {PageAccessDeniedComponent} from "./pages/401/page-access-denied.component";
 import {UserAddComponent} from "./pages/user/user-add.component";
 import {UserEditComponent} from "./pages/user/user-edit.component";
@@ -34,195 +34,236 @@ import {ClientPipelineComponent} from "./pages/clients/client-pipeline/client.pi
 import {GroupsComponent} from "./pages/clients/groups/groups.component";
 
 export const routes: Routes = [
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  {path: '', redirectTo: '/home', pathMatch: 'full'},
   {
     path: 'home',
     component: HomeComponent,
-    children:[
-        { path: '', redirectTo: '/home', pathMatch: 'full', data:[{selectedHeaderItemIndex:1, selectedSubNavItemIndex:-1}] },
+    children: [
+      {
+        path: '',
+        redirectTo: '/home',
+        pathMatch: 'full',
+        data: [{selectedHeaderItemIndex: 1, selectedSubNavItemIndex: -1}]
+      },
     ]
   },
 
-  { path: 'dashboard',
-    canActivate:[AuthGuard],
+  {
+    path: 'dashboard',
+    canActivate: [AuthGuard],
     component: DashboardComponent,
-    data:[{selectedHeaderItemIndex:-1, selectedSubNavItemIndex:-1}]
+    data: [{selectedHeaderItemIndex: -1, selectedSubNavItemIndex: -1}]
   },
 
-  { path: 'users',
-    canActivate:[AuthGuard],
+  {
+    path: 'users',
+    canActivate: [AuthGuard],
     component: UserComponent,
-    data:[{selectedHeaderItemIndex:-1, selectedSubNavItemIndex:-1}]
+    data: [{selectedHeaderItemIndex: -1, selectedSubNavItemIndex: -1}]
   },
 
 
-  { path:'users/add',
-    canActivate:[AuthGuard],
+  {
+    path: 'users/add',
+    canActivate: [AuthGuard],
     component: UserAddComponent,
-    data:[{selectedHeaderItemIndex:1, selectedSubNavItemIndex:-1}] },
+    data: [{selectedHeaderItemIndex: 1, selectedSubNavItemIndex: -1}]
+  },
 
   {
     path: 'users/:id',
-    canActivate:[AuthGuard],
+    canActivate: [AuthGuard],
     component: UserDetailsComponent,
-    data:[{selectedHeaderItemIndex:-1, selectedSubNavItemIndex:-1}]
+    data: [{selectedHeaderItemIndex: -1, selectedSubNavItemIndex: -1}]
   },
 
   {
     path: 'users/edit/:id',
-    canActivate:[AuthGuard],
+    canActivate: [AuthGuard],
     component: UserEditComponent,
-    data:[{selectedHeaderItemIndex:-1, selectedSubNavItemIndex:-1}]
+    data: [{selectedHeaderItemIndex: -1, selectedSubNavItemIndex: -1}]
   },
 
-  { path: 'login' ,
+  {
+    path: 'login',
     component: LoginComponent,
-    data:[{selectedHeaderItemIndex:-1, selectedSubNavItemIndex:-1}] },
+    data: [{selectedHeaderItemIndex: -1, selectedSubNavItemIndex: -1}]
+  },
 
-  { path: 'forgot-password',
+  {
+    path: 'forgot-password',
     component: ForgotPasswordComponent,
-    data:[{selectedHeaderItemIndex:-1, selectedSubNavItemIndex:-1}]
+    data: [{selectedHeaderItemIndex: -1, selectedSubNavItemIndex: -1}]
   },
 
-  { path: 'reset-password',
+  {
+    path: 'reset-password',
     component: ResetPasswordComponent,
-    data:[{selectedHeaderItemIndex:-1, selectedSubNavItemIndex:-1}]
+    data: [{selectedHeaderItemIndex: -1, selectedSubNavItemIndex: -1}]
   },
 
-  { path: 'logout',
+  {
+    path: 'logout',
     component: LogoutComponent,
-    data:[{selectedHeaderItemIndex:-1, selectedSubNavItemIndex:-1}] },
+    data: [{selectedHeaderItemIndex: -1, selectedSubNavItemIndex: -1}]
+  },
 
-  { path: 'clients',
-    canActivate:[AuthGuard],
+  {
+    path: 'clients',
+    canActivate: [AuthGuard],
     component: ClientsListComponent,
-    data:[{selectedHeaderItemIndex:-1, selectedSubNavItemIndex:-1}]
+    data: [{selectedHeaderItemIndex: -1, selectedSubNavItemIndex: -1}]
   },
 
-  { path: 'calendar',
+  {
+    path: 'calendar',
     component: CalendarComponent,
-    data:[{selectedHeaderItemIndex:-1, selectedSubNavItemIndex:-1}]
+    data: [{selectedHeaderItemIndex: -1, selectedSubNavItemIndex: -1}]
   },
 
-  { path: 'groups',
+  {
+    path: 'groups',
     component: GroupsComponent,
-    data:[{selectedHeaderItemIndex:-1, selectedSubNavItemIndex:-1}]
+    data: [{selectedHeaderItemIndex: -1, selectedSubNavItemIndex: -1}]
   },
 
-  { path: 'event/:id',
+  {
+    path: 'event/:id',
     component: CalendarAddEventComponent,
-    data:[{selectedHeaderItemIndex:-1, selectedSubNavItemIndex:-1}]
+    data: [{selectedHeaderItemIndex: -1, selectedSubNavItemIndex: -1}]
   },
 
-  { path: 'event/edit/:id',
+  {
+    path: 'event/edit/:id',
     component: CalendarEditEventComponent,
-    data:[{selectedHeaderItemIndex:-1, selectedSubNavItemIndex:-1}]
+    data: [{selectedHeaderItemIndex: -1, selectedSubNavItemIndex: -1}]
   },
 
-  { path: 'clients/pipeline',
-    canActivate:[AuthGuard],
+  {
+    path: 'clients/pipeline',
+    canActivate: [AuthGuard],
     component: ClientPipelineComponent,
-    data:[{selectedHeaderItemIndex:-1, selectedSubNavItemIndex:-1}]
+    data: [{selectedHeaderItemIndex: -1, selectedSubNavItemIndex: -1}]
   },
 
-  { path: 'client/new',
-    canActivate:[AuthGuard],
+  {
+    path: 'client/new',
+    canActivate: [AuthGuard],
     component: ClientAddComponent,
-    data:[{selectedHeaderItemIndex:-1, selectedSubNavItemIndex:-1}]
+    data: [{selectedHeaderItemIndex: -1, selectedSubNavItemIndex: -1}]
   },
 
-  { path: 'client/:id',
+  {
+    path: 'client/:id',
     component: ClientDetailsComponent,
-    data:[{selectedHeaderItemIndex:-1, selectedSubNavItemIndex:-1}]
+    data: [{selectedHeaderItemIndex: -1, selectedSubNavItemIndex: -1}]
   },
 
-  { path: 'client/delete/:id',
-    canActivate:[AuthGuard],
+  {
+    path: 'client/delete/:id',
+    canActivate: [AuthGuard],
     component: ClientDeleteComponent,
-    data:[{selectedHeaderItemIndex:-1, selectedSubNavItemIndex:-1}]
+    data: [{selectedHeaderItemIndex: -1, selectedSubNavItemIndex: -1}]
   },
 
-  { path: 'client/edit/:id',
-    canActivate:[AuthGuard],
+  {
+    path: 'client/edit/:id',
+    canActivate: [AuthGuard],
     component: ClientEditComponent,
-    data:[{selectedHeaderItemIndex:-1, selectedSubNavItemIndex:-1}]
+    data: [{selectedHeaderItemIndex: -1, selectedSubNavItemIndex: -1}]
   },
 
-  { path: 'client/activity/:id',
-    canActivate:[AuthGuard],
+  {
+    path: 'client/activity/:id',
+    canActivate: [AuthGuard],
     component: ActivityDetailsComponent,
-    data:[{selectedHeaderItemIndex:-1, selectedSubNavItemIndex:-1}]
+    data: [{selectedHeaderItemIndex: -1, selectedSubNavItemIndex: -1}]
   },
 
 
-  { path: 'user/:name',
-    canActivate:[AuthGuard],
+  {
+    path: 'user/:name',
+    canActivate: [AuthGuard],
     component: UserAccountComponent,
-    data:[{selectedHeaderItemIndex:-1, selectedSubNavItemIndex:-1}]
+    data: [{selectedHeaderItemIndex: -1, selectedSubNavItemIndex: -1}]
   },
 
-  { path: 'permissions',
-    canActivate:[AuthGuard],
+  {
+    path: 'permissions',
+    canActivate: [AuthGuard],
     component: PermissionsComponent,
-    data:[{selectedHeaderItemIndex:-1, selectedSubNavItemIndex:-1}]
+    data: [{selectedHeaderItemIndex: -1, selectedSubNavItemIndex: -1}]
   },
 
-  { path: 'ama-email',
-    canActivate:[AuthGuard],
+  {
+    path: 'ama-email',
+    canActivate: [AuthGuard],
     component: AmaEmailComponent,
-    data:[{selectedHeaderItemIndex:-1, selectedSubNavItemIndex:-1}]
+    data: [{selectedHeaderItemIndex: -1, selectedSubNavItemIndex: -1}]
   },
 
-  { path: 'statistics',
-    canActivate:[AuthGuard],
+  {
+    path: 'statistics',
+    canActivate: [AuthGuard],
     component: UserStatisticsComponent,
-    data:[{selectedHeaderItemIndex:-1, selectedSubNavItemIndex:-1}]
+    data: [{selectedHeaderItemIndex: -1, selectedSubNavItemIndex: -1}]
   },
 
 
-  { path: 'user/change-password/:id',
-    canActivate:[AuthGuard],
+  {
+    path: 'user/change-password/:id',
+    canActivate: [AuthGuard],
     component: ChangePasswordComponent,
-    data:[{selectedHeaderItemIndex:-1, selectedSubNavItemIndex:-1}]
+    data: [{selectedHeaderItemIndex: -1, selectedSubNavItemIndex: -1}]
   },
 
-  { path: 'user/change-email/:id',
-    canActivate:[AuthGuard],
+  {
+    path: 'user/change-email/:id',
+    canActivate: [AuthGuard],
     component: ChangeEmailComponent,
-    data:[{selectedHeaderItemIndex:-1, selectedSubNavItemIndex:-1}]
+    data: [{selectedHeaderItemIndex: -1, selectedSubNavItemIndex: -1}]
   },
 
-  { path: 'clients/import',
-    canActivate:[AuthGuard],
+  {
+    path: 'clients/import',
+    canActivate: [AuthGuard],
     component: ClientImportComponent,
-    data:[{selectedHeaderItemIndex:-1, selectedSubNavItemIndex:-1}]
+    data: [{selectedHeaderItemIndex: -1, selectedSubNavItemIndex: -1}]
   },
 
-  { path: 'theme',
-    canActivate:[AuthGuard],
+  {
+    path: 'theme',
+    canActivate: [AuthGuard],
     component: ThemeChangerComponent,
-    data:[{selectedHeaderItemIndex:-1, selectedSubNavItemIndex:-1}]
+    data: [{selectedHeaderItemIndex: -1, selectedSubNavItemIndex: -1}]
   },
 
-  { path: '**',
+  {
+    path: '**',
     redirectTo: '404',
-    data:[{selectedHeaderItemIndex:-1, selectedSubNavItemIndex:-1}]},
+    data: [{selectedHeaderItemIndex: -1, selectedSubNavItemIndex: -1}]
+  },
 
-    { path: '404',
-      component: PageNotFoundComponent,
-      data:[{selectedHeaderItemIndex:-1, selectedSubNavItemIndex:-1}] },
+  {
+    path: '404',
+    component: PageNotFoundComponent,
+    data: [{selectedHeaderItemIndex: -1, selectedSubNavItemIndex: -1}]
+  },
 
-  { path: '401',
+  {
+    path: '401',
     component: PageAccessDeniedComponent,
-    data:[{selectedHeaderItemIndex:-1, selectedSubNavItemIndex:-1}]},
+    data: [{selectedHeaderItemIndex: -1, selectedSubNavItemIndex: -1}]
+  },
 
 ];
 
 @NgModule({
-  exports: [ RouterModule ],
-  declarations:[PageNotFoundComponent, PageAccessDeniedComponent],
-  imports: [ RouterModule.forRoot(routes, {useHash:false} )],
+  exports: [RouterModule],
+  declarations: [PageNotFoundComponent, PageAccessDeniedComponent],
+  imports: [RouterModule.forRoot(routes, {useHash: false})],
 
 })
-export class AppRoutingModule {}
+export class AppRoutingModule {
+}
 

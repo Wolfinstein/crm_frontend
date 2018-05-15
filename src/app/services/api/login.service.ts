@@ -1,81 +1,83 @@
-import { Injectable, Inject } from '@angular/core';
-import { Router } from '@angular/router';
+import {Injectable} from '@angular/core';
+import {Router} from '@angular/router';
 
-import { Observable,Subject,BehaviorSubject } from 'rxjs';
+import {BehaviorSubject, Observable} from 'rxjs';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
-import { UserInfoService, LoginInfoInStorage} from '../user-info.service';
-import { ApiRequestService } from './api-request.service';
+import {LoginInfoInStorage, UserInfoService} from '../user-info.service';
+import {ApiRequestService} from './api-request.service';
 
-export interface LoginRequestParam{
-    username:string;
-    password:string;
+export interface LoginRequestParam {
+  username: string;
+  password: string;
 }
 
 @Injectable()
-export class LoginService{
+export class LoginService {
 
-    public landingPage:string = "/home";
-    constructor(
-        private router:Router,
-        private userInfoService: UserInfoService,
-        private apiRequest: ApiRequestService
-    ) {}
+  public landingPage: string = "/home";
 
-    getToken(username:string = "", password:string = ""): Observable<any> {
+  constructor(
+    private router: Router,
+    private userInfoService: UserInfoService,
+    private apiRequest: ApiRequestService
+  ) {
+  }
 
-        let bodyData:LoginRequestParam = {
-            "username": username ,
-            "password": password ,
-        };
+  getToken(username: string = "", password: string = ""): Observable<any> {
 
-        let loginDataSubject:BehaviorSubject<any> = new BehaviorSubject<any>([]);
-        let loginInfoReturn:LoginInfoInStorage;
+    let bodyData: LoginRequestParam = {
+      "username": username,
+      "password": password,
+    };
 
-        this.apiRequest.post('session', bodyData)
-            .subscribe(jsonResp => {
+    let loginDataSubject: BehaviorSubject<any> = new BehaviorSubject<any>([]);
+    let loginInfoReturn: LoginInfoInStorage;
 
-                if (jsonResp !== undefined && jsonResp !== null && jsonResp.operationStatus === "SUCCESS"){
-                    loginInfoReturn = {
-                        "success"    : true,
-                        "message"    : 'success',
-                        "landingPage": this.landingPage,
-                        "user"       : {
-                            "userId"     : jsonResp.item.userId,
-                            "email"      : jsonResp.item.email,
-                            "displayName": jsonResp.item.firstName + " " + jsonResp.item.lastName,
-                            "token"      : jsonResp.item.token,
-                            "role"       : jsonResp.item.role,
-                        }
-                    };
+    this.apiRequest.post('session', bodyData)
+      .subscribe(jsonResp => {
 
-                    this.userInfoService.storeUserInfo(JSON.stringify(loginInfoReturn.user));
-                }
-                else {
-                    loginInfoReturn = {
-                        "success":false,
-                        "message":"server_failure",
-                        "landingPage":'/login'
-                    };
-                }
-                loginDataSubject.next(loginInfoReturn);
-            },
-            err => {
-              loginInfoReturn = {
-                "success": false,
-                "message": 'failure',
-                "landingPage": '/login'
-              };
-              loginDataSubject.next(loginInfoReturn);
-            });
-            return loginDataSubject;
+          if (jsonResp !== undefined && jsonResp !== null && jsonResp.operationStatus === "SUCCESS") {
+            loginInfoReturn = {
+              "success": true,
+              "message": 'success',
+              "landingPage": this.landingPage,
+              "user": {
+                "userId": jsonResp.item.userId,
+                "email": jsonResp.item.email,
+                "displayName": jsonResp.item.firstName + " " + jsonResp.item.lastName,
+                "token": jsonResp.item.token,
+                "role": jsonResp.item.role,
+              }
+            };
+
+            this.userInfoService.storeUserInfo(JSON.stringify(loginInfoReturn.user));
+          }
+          else {
+            loginInfoReturn = {
+              "success": false,
+              "message": "server_failure",
+              "landingPage": '/login'
+            };
+          }
+          loginDataSubject.next(loginInfoReturn);
+        },
+        err => {
+          loginInfoReturn = {
+            "success": false,
+            "message": 'failure',
+            "landingPage": '/login'
+          };
+          loginDataSubject.next(loginInfoReturn);
+        });
+    return loginDataSubject;
+  }
+
+  logout(navigatetoLogout = true): void {
+    this.userInfoService.removeUserInfo();
+    if (navigatetoLogout) {
+      this.router.navigate(["logout"]);
     }
-
-    logout(navigatetoLogout=true): void {
-        this.userInfoService.removeUserInfo();
-        if(navigatetoLogout){
-            this.router.navigate(["logout"]);
-        }
-    }
+  }
 
 }

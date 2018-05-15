@@ -4,83 +4,88 @@
     <h5>Search Clients: </h5>
 
     <select id="clientType" name="clientType" [(ngModel)]="clientTypeModel" class="form-control">
-      <option *ngFor="let t of types" [ngValue]="t"> {{t}} </option>
+      <option *ngFor="let t of types" [ngValue]="t"> {{t}}</option>
     </select>
 
-      <div class="row">
-        <div class="left">
-          <mat-form-field>
-            <input matInput type="text" placeholder="Email" name="email" [(ngModel)]="emailModel">
-          </mat-form-field>
+    <div class="row">
+      <div class="left">
+        <mat-form-field>
+          <input matInput type="text" placeholder="Email" name="email" [(ngModel)]="emailModel">
+        </mat-form-field>
 
-          <mat-form-field>
-            <input matInput type="text"  placeholder="Phone" name="phone" [(ngModel)]="phoneModel">
-          </mat-form-field>
-        </div>
-
-        <div class="right" *ngIf="clientTypeModel == 'Individual'">
-          <mat-form-field>
-            <input matInput type="text" placeholder="PESEL" name="clientType" [(ngModel)]="peselModel">
-          </mat-form-field>
-        </div>
-
-        <div class="right" *ngIf="clientTypeModel == 'Company'">
-          <mat-form-field>
-            <input matInput type="text" placeholder="Nip" name="nip" [(ngModel)]="nipModel">
-          </mat-form-field>
-
-          <mat-form-field>
-            <input matInput type="text" placeholder="Company name" name="name" [(ngModel)]="nameModel">
-          </mat-form-field>
-        </div>
+        <mat-form-field>
+          <input matInput type="text" placeholder="Phone" name="phone" [(ngModel)]="phoneModel">
+        </mat-form-field>
       </div>
-    <button mat-raised-button color="primary" style="float: bottom" (click)="getClients(clientTypeModel, emailModel, phoneModel, nipModel, peselModel, nameModel)">Search</button>
-    <button mat-raised-button color="primary" style="float: bottom" type="reset" >Reset</button>
+
+      <div class="right" *ngIf="clientTypeModel == 'Individual'">
+        <mat-form-field>
+          <input matInput type="text" placeholder="PESEL" name="clientType" [(ngModel)]="peselModel">
+        </mat-form-field>
+      </div>
+
+      <div class="right" *ngIf="clientTypeModel == 'Company'">
+        <mat-form-field>
+          <input matInput type="text" placeholder="Nip" name="nip" [(ngModel)]="nipModel">
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput type="text" placeholder="Company name" name="name" [(ngModel)]="nameModel">
+        </mat-form-field>
+      </div>
+    </div>
+    <button mat-raised-button color="primary" style="float: bottom"
+            (click)="getClients(clientTypeModel, emailModel, phoneModel, nipModel, peselModel, nameModel)">Search
+    </button>
+    <button mat-raised-button color="primary" style="float: bottom" type="reset">Reset</button>
   </form>
 
   <div [hidden]="!filterShow" class="groupFilter">
     <h5>Filter By Groups: </h5>
-    <ss-multiselect-dropdown [options]="myOptions" [settings]="mySettings" [(ngModel)]="optionsModel" (ngModelChange)="onChange($event)"></ss-multiselect-dropdown>
+    <ss-multiselect-dropdown [options]="myOptions" [settings]="mySettings" [(ngModel)]="optionsModel"
+                             (ngModelChange)="onChange($event)"></ss-multiselect-dropdown>
   </div>
 </div>
 
 
-
 <div class="container">
-    <ngx-datatable
-      #table
-      class="ngx-datatable bootstrap"
-      [rows]="filterTableRows"
-      [headerHeight]="45"
-      [rowHeight]="'auto'"
-      [columnMode]="'flex'"
-      [footerHeight]="30"
-      [limit]="15"
-    >
+  <ngx-datatable
+    #table
+    class="ngx-datatable bootstrap"
+    [rows]="filterTableRows"
+    [headerHeight]="45"
+    [rowHeight]="'auto'"
+    [columnMode]="'flex'"
+    [footerHeight]="30"
+    [limit]="15"
+  >
 
-      <ngx-datatable-column name="Client type" [flexGrow]="0.7">
-        <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-          {{row.client_type}}
-        </ng-template>
-      </ngx-datatable-column>
-      <ngx-datatable-column name="Name" [flexGrow]="1">
-        <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-          {{row.firstName}} {{row.lastName}} {{row.name}}
-        </ng-template>
-      </ngx-datatable-column>
-      <ngx-datatable-column name="Email" [flexGrow]="1.7"></ngx-datatable-column>
-      <ngx-datatable-column name="Phone" [flexGrow]="1"></ngx-datatable-column>
-      <ngx-datatable-column name="PESEL" [flexGrow]="1"></ngx-datatable-column>
-      <ngx-datatable-column name="Nip" [flexGrow]="0.8"></ngx-datatable-column>
+    <ngx-datatable-column name="Client type" [flexGrow]="0.7">
+      <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+        {{row.client_type}}
+      </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column name="Name" [flexGrow]="1">
+      <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+        {{row.firstName}} {{row.lastName}} {{row.name}}
+      </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column name="Email" [flexGrow]="1.7"></ngx-datatable-column>
+    <ngx-datatable-column name="Phone" [flexGrow]="1"></ngx-datatable-column>
+    <ngx-datatable-column name="PESEL" [flexGrow]="1"></ngx-datatable-column>
+    <ngx-datatable-column name="Nip" [flexGrow]="0.8"></ngx-datatable-column>
 
-      <ngx-datatable-column [flexGrow]="1">
-        <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-          <mat-icon  mat-icon-button color="primary" style="color:black" [routerLink]="'/client/' + row.id">pageview</mat-icon>
-          <mat-icon  mat-icon-button color="accent" [routerLink]="'/client/edit/' + row.id">edit</mat-icon>
-          <mat-icon *ngIf="showDeleteButton()"   mat-icon-button color="warn" [routerLink]="'/client/delete/' + row.id">delete</mat-icon>
-        </ng-template>
-      </ngx-datatable-column>
-    </ngx-datatable>
+    <ngx-datatable-column [flexGrow]="1">
+      <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+        <mat-icon mat-icon-button color="primary" style="color:black" [routerLink]="'/client/' + row.id">pageview
+        </mat-icon>
+        <mat-icon mat-icon-button color="accent" [routerLink]="'/client/edit/' + row.id">edit</mat-icon>
+        <mat-icon *ngIf="showDeleteButton()" mat-icon-button color="warn" [routerLink]="'/client/delete/' + row.id">
+          delete
+        </mat-icon>
+      </ng-template>
+    </ngx-datatable-column>
+  </ngx-datatable>
   <label style="float: right; margin-right: 20px">
     Choose amount of records
     <select [value]="table.limit" (change)="onLimitChange($event.target.value)">

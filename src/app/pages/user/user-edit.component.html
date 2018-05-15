@@ -1,7 +1,7 @@
 <div class="container-fluid">
   <form (ngSubmit)="editUser(currentUser.id, currentUser)">
 
-        <input value="{{currentUser.id}}"
+    <input value="{{currentUser.id}}"
            name="id"
            type="hidden"
            id="id">
@@ -18,13 +18,13 @@
     </div>
 
     <!--<div class="form-group">-->
-      <!--<label for="login">Username: </label>-->
-      <!--<input type="text"-->
-             <!--value="{{currentUser.login}}"-->
-             <!--class="form-control"-->
-             <!--name="login"-->
-             <!--id="login"-->
-             <!--[(ngModel)]="currentUser.login">-->
+    <!--<label for="login">Username: </label>-->
+    <!--<input type="text"-->
+    <!--value="{{currentUser.login}}"-->
+    <!--class="form-control"-->
+    <!--name="login"-->
+    <!--id="login"-->
+    <!--[(ngModel)]="currentUser.login">-->
     <!--</div>-->
 
     <div class="form-group">
@@ -35,7 +35,7 @@
              name="name"
              id="name"
              [(ngModel)]="currentUser.name"
-             >
+      >
     </div>
 
     <div class="form-group">
@@ -46,13 +46,13 @@
              name="surname"
              id="surname"
              [(ngModel)]="currentUser.surname"
-             >
+      >
     </div>
 
     <div class="form-group">
       <label for="role">Role: </label>
       <select [(ngModel)]="currentUser.role" id="role" name="role" class="form-control">
-        <option *ngFor="let role of roles" [ngValue]="role">{{ role }} </option>
+        <option *ngFor="let role of roles" [ngValue]="role">{{ role }}</option>
       </select>
     </div>
     <div class="errMsg" *ngIf="errMsg">{{errMsg}}</div>

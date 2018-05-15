@@ -1,8 +1,9 @@
-export class AmaEmailModel{
+export class AmaEmailModel {
   constructor(
-    public subject : string,
+    public subject: string,
     public message: string,
     public email: string,
     public name: string,
-  ) { }
+  ) {
+  }
 }

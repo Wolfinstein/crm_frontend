@@ -1,4 +1,4 @@
-export class ContactModel{
+export class ContactModel {
   constructor(
     public name: string,
     public surname: string,
@@ -6,6 +6,7 @@ export class ContactModel{
     public position: string,
     public phone: string,
     public description: string,
-    public clientId : string
-  ) { }
+    public clientId: string
+  ) {
+  }
 }

@@ -1,56 +1,84 @@
 <div class="container-fluid">
-  <form [formGroup]="userForm" class="form-edit-add" (ngSubmit)="createUser()" >
+  <form [formGroup]="userForm" class="form-edit-add" (ngSubmit)="createUser()">
 
     <div class="form-group" [ngClass]="{'has-error':!userForm.controls['name'].valid}">
       <label>First Name:</label>
       <input class="form-control" type="text" placeholder="John" [formControl]="userForm.controls['name']">
-      <div *ngIf="userForm.controls['name'].hasError('required') && userForm.controls['name'].touched" class="alert alert-danger">You must include a first name.</div>
+      <div *ngIf="userForm.controls['name'].hasError('required') && userForm.controls['name'].touched"
+           class="alert alert-danger">You must include a first name.
+      </div>
     </div>
 
     <div class="form-group" [ngClass]="{'has-error':!userForm.controls['surname'].valid}">
       <label>Last Name</label>
       <input class="form-control" type="text" placeholder="Doe" [formControl]="userForm.controls['surname']">
-      <div *ngIf="userForm.controls['surname'].hasError('required') && userForm.controls['surname'].touched" class="alert alert-danger">You must include a last name.</div>
+      <div *ngIf="userForm.controls['surname'].hasError('required') && userForm.controls['surname'].touched"
+           class="alert alert-danger">You must include a last name.
+      </div>
     </div>
 
     <div class="form-group" [ngClass]="{'has-error':!userForm.controls['email'].valid}">
       <label>Email</label>
-      <input class="form-control" type="email" placeholder="example@example.com" [formControl]="userForm.controls['email']">
-      <div *ngIf="userForm.controls['email'].hasError('required') && userForm.controls['email'].touched" class="alert alert-danger">You must include an email.</div>
-      <div *ngIf="userForm.controls['email'].hasError('email') && userForm.controls['email'].touched" class="alert alert-danger">It has to be a correct email format like "example@example.com".</div>
+      <input class="form-control" type="email" placeholder="example@example.com"
+             [formControl]="userForm.controls['email']">
+      <div *ngIf="userForm.controls['email'].hasError('required') && userForm.controls['email'].touched"
+           class="alert alert-danger">You must include an email.
+      </div>
+      <div *ngIf="userForm.controls['email'].hasError('email') && userForm.controls['email'].touched"
+           class="alert alert-danger">It has to be a correct email format like "example@example.com".
+      </div>
       <div *ngIf="errMsg" class="alert alert-danger">{{errMsg}}</div>
     </div>
 
     <div class="form-group" [ngClass]="{'has-error':!userForm.controls['login'].valid}">
       <label>Username</label>
       <input class="form-control" type="text" placeholder="JonDoe123" [formControl]="userForm.controls['login']">
-      <div *ngIf="userForm.controls['login'].hasError('required') && userForm.controls['login'].touched" class="alert alert-danger">You must include a login.</div>
-      <div *ngIf="userForm.controls['login'].hasError('minlength') && userForm.controls['login'].touched" class="alert alert-danger">Your username must be at least 6 characters long.</div>
+      <div *ngIf="userForm.controls['login'].hasError('required') && userForm.controls['login'].touched"
+           class="alert alert-danger">You must include a login.
+      </div>
+      <div *ngIf="userForm.controls['login'].hasError('minlength') && userForm.controls['login'].touched"
+           class="alert alert-danger">Your username must be at least 6 characters long.
+      </div>
     </div>
 
     <div class="form-group" [ngClass]="{'has-error':!userForm.controls['password'].valid}">
       <label>Password</label>
       <input class="form-control" type="password" placeholder="password" [formControl]="userForm.controls['password']">
-      <div *ngIf="userForm.controls['password'].hasError('required') && userForm.controls['password'].touched" class="alert alert-danger">You must include a password.</div>
-      <div *ngIf="userForm.controls['password'].hasError('minlength') && userForm.controls['password'].touched" class="alert alert-danger">Your password must be at least 6 characters long.</div>
+      <div *ngIf="userForm.controls['password'].hasError('required') && userForm.controls['password'].touched"
+           class="alert alert-danger">You must include a password.
+      </div>
+      <div *ngIf="userForm.controls['password'].hasError('minlength') && userForm.controls['password'].touched"
+           class="alert alert-danger">Your password must be at least 6 characters long.
+      </div>
     </div>
 
     <div class="form-group" [ngClass]="{'has-error':!userForm.controls['passwordRepeated'].valid}">
       <label>Repeat Password</label>
-      <input class="form-control" type="password" placeholder="repeat" [formControl]="userForm.controls['passwordRepeated']">
-      <div *ngIf="userForm.controls['passwordRepeated'].hasError('required') && userForm.controls['passwordRepeated'].touched" class="alert alert-danger">You must repeat the password.</div>
-      <div *ngIf="userForm.controls['passwordRepeated'].hasError('minlength') && userForm.controls['passwordRepeated'].touched" class="alert alert-danger">Your password must be at least 6 characters long.</div>
-      <div *ngIf="userForm.invalid && userForm.controls['passwordRepeated'].touched"  class="alert alert-danger"> Given passwords are not equal :<</div>
+      <input class="form-control" type="password" placeholder="repeat"
+             [formControl]="userForm.controls['passwordRepeated']">
+      <div
+        *ngIf="userForm.controls['passwordRepeated'].hasError('required') && userForm.controls['passwordRepeated'].touched"
+        class="alert alert-danger">You must repeat the password.
+      </div>
+      <div
+        *ngIf="userForm.controls['passwordRepeated'].hasError('minlength') && userForm.controls['passwordRepeated'].touched"
+        class="alert alert-danger">Your password must be at least 6 characters long.
+      </div>
+      <div *ngIf="userForm.invalid && userForm.controls['passwordRepeated'].touched" class="alert alert-danger"> Given
+        passwords are not equal :<
+      </div>
     </div>
 
 
     <div class="form-group">
       <label for="role">Role: </label>
-      <select id="role" name="role"  class="form-control" [formControl]="userForm.controls['role']">
-        <option *ngFor="let role of roles" >{{ role }} </option>
+      <select id="role" name="role" class="form-control" [formControl]="userForm.controls['role']">
+        <option *ngFor="let role of roles">{{ role }}</option>
       </select>
     </div>
-    <button class="add-submit-button" type="submit" [disabled]="!userForm.valid"  mat-raised-button color="primary">Submit</button>
+    <button class="add-submit-button" type="submit" [disabled]="!userForm.valid" mat-raised-button color="primary">
+      Submit
+    </button>
 
   </form>
 </div>

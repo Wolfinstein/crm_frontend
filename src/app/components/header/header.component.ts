@@ -1,6 +1,6 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {UserInfoService} from "../../services/user-info.service";
-import {NavigationStart, Router, RouterEvent} from "@angular/router";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'header-component',
@@ -10,18 +10,17 @@ import {NavigationStart, Router, RouterEvent} from "@angular/router";
 
 export class HeaderComponent {
 
-  name : string = "";
-  currentUrl : string = "";
+  name: string = "";
+  currentUrl: string = "";
 
-  constructor(private userInfo: UserInfoService, private router : Router) {
+  constructor(private userInfo: UserInfoService, private router: Router) {
     router.events.subscribe(data => {
       this.currentUrl = this.router.routerState.snapshot.url;
     });
   }
 
-  handleUser(){
-    if(this.IsLoggedIn())
-    {
+  handleUser() {
+    if (this.IsLoggedIn()) {
       this.name = this.userInfo.getUserInfo().displayName.replace(' ', '_');
       this.router.navigate(['user/' + this.name]);
     }
@@ -30,18 +29,15 @@ export class HeaderComponent {
 
   IsLoggedIn(): boolean {
     return this.userInfo.isLoggedIn();
-    };
+  };
 
   showUserLink(): boolean {
-    if(this.IsLoggedIn())
-    {
-      if (this.userInfo.getUserInfo().role != 'SALESMAN')
-      {
+    if (this.IsLoggedIn()) {
+      if (this.userInfo.getUserInfo().role != 'SALESMAN') {
         return true;
       }
     }
-    else
-    {
+    else {
       return false;
     }
   }

@@ -13,7 +13,7 @@ import {IMultiSelectOption, IMultiSelectSettings} from "angular-2-dropdown-multi
 })
 export class ClientsListComponent implements OnInit {
 
-  filterShow : boolean = false;
+  filterShow: boolean = false;
   clientTypeModel: String;
   emailModel: String;
   phoneModel: String;
@@ -24,10 +24,16 @@ export class ClientsListComponent implements OnInit {
   filterTableRows: any[] = [];
   optionsModel: number[];
   myOptions: IMultiSelectOption[];
+  mySettings: IMultiSelectSettings = {
+    enableSearch: true,
+    checkedStyle: 'fontawesome',
+    buttonClasses: 'btn btn-default btn-block',
+    dynamicTitleMaxItems: 3,
+    displayAllSelectedText: true
+  };
   @ViewChild(DatatableComponent) private table: DatatableComponent;
 
-
-  constructor(private route: ActivatedRoute, private _router: Router, private clientService: ClientService, private userInfo : UserInfoService) {
+  constructor(private route: ActivatedRoute, private _router: Router, private clientService: ClientService, private userInfo: UserInfoService) {
     this.clientTypeModel = "All Clients";
     this.emailModel = "";
     this.phoneModel = "";
@@ -51,7 +57,7 @@ export class ClientsListComponent implements OnInit {
       .append('Name', name);
     this.clientService.getAllClients(params)
       .subscribe(data => {
-          this.filterTableRows = data;
+        this.filterTableRows = data;
         if (this.filterTableRows == null) {
           if (confirm("No client with this value")) {
             this.getClients('', '', '', '', '', '');
@@ -71,21 +77,18 @@ export class ClientsListComponent implements OnInit {
   }
 
   showDeleteButton(): boolean {
-    if(this.userInfo.isLoggedIn())
-    {
-      if (this.userInfo.getUserInfo().role != 'SALESMAN')
-      {
+    if (this.userInfo.isLoggedIn()) {
+      if (this.userInfo.getUserInfo().role != 'SALESMAN') {
         return true;
       }
     }
-    else
-    {
+    else {
       return false;
     }
   }
 
-  fillDropdown()  {
-    this.clientService.groupDropdown().subscribe(data =>this.myOptions = data)
+  fillDropdown() {
+    this.clientService.groupDropdown().subscribe(data => this.myOptions = data)
   }
 
   onChange(event) {
@@ -97,15 +100,8 @@ export class ClientsListComponent implements OnInit {
       error => console.log(error.status)
     );
   }
-  mySettings: IMultiSelectSettings = {
-    enableSearch: true,
-    checkedStyle: 'fontawesome',
-    buttonClasses: 'btn btn-default btn-block',
-    dynamicTitleMaxItems: 3,
-    displayAllSelectedText: true
-  };
 
-  changeFilter(){
+  changeFilter() {
     this.filterShow = !this.filterShow;
     this.getClients(this.clientTypeModel, this.emailModel, this.phoneModel, this.nipModel, this.peselModel, this.nameModel);
     this.optionsModel = [];

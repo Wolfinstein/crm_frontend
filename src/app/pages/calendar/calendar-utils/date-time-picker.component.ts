@@ -1,20 +1,20 @@
-import {ChangeDetectorRef, Component, forwardRef, Input, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, forwardRef, Input} from '@angular/core';
 import {
-  getSeconds,
-  getMinutes,
-  getHours,
   getDate,
+  getHours,
+  getMinutes,
   getMonth,
+  getSeconds,
   getYear,
-  setSeconds,
-  setMinutes,
-  setHours,
   setDate,
+  setHours,
+  setMinutes,
   setMonth,
+  setSeconds,
   setYear
 } from 'date-fns';
-import { NgbDateStruct, NgbTimeStruct } from '@ng-bootstrap/ng-bootstrap';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import {NgbDateStruct, NgbTimeStruct} from '@ng-bootstrap/ng-bootstrap';
+import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
 
 export const DATE_TIME_PICKER_CONTROL_VALUE_ACCESSOR: any = {
   provide: NG_VALUE_ACCESSOR,
@@ -40,7 +40,8 @@ export class DateTimePickerComponent implements ControlValueAccessor {
 
   datePicker: any;
 
-  private onChangeCallback: (date: Date) => void = () => {};
+  private onChangeCallback: (date: Date) => void = () => {
+  };
 
   constructor(private cdr: ChangeDetectorRef) {
   }
@@ -93,12 +94,12 @@ export class DateTimePickerComponent implements ControlValueAccessor {
     this.onChangeCallback = fn;
   }
 
-  registerOnTouched(fn: any): void {}
+  registerOnTouched(fn: any): void {
+  }
 
   updateDate(): void {
     console.log("5.before updateDate this.date: " + this.date);
     const newDate: Date = setYear(
-
       setMonth(
         setDate(this.date, this.dateStruct.day),
         this.dateStruct.month - 1

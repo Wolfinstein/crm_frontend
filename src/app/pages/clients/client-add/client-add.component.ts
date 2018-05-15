@@ -11,11 +11,11 @@ import {ClientService} from "../../../services/api/client.service";
 export class ClientAddComponent implements OnInit {
 
   @Input() clientModel: FormGroup;
-  client_types : string[] = ['', 'Individual', 'Company'];
+  client_types: string[] = ['', 'Individual', 'Company'];
 
   constructor(private _router: Router, private clientService: ClientService,
               formBuilder: FormBuilder) {
-    this.clientModel = formBuilder.group( {
+    this.clientModel = formBuilder.group({
       'client_type': [" "],
       'email': ["", Validators.compose([Validators.required, Validators.email])],
       'phone': ["", Validators.compose([Validators.required, Validators.minLength(9)])],
@@ -39,7 +39,7 @@ export class ClientAddComponent implements OnInit {
     this.clientService.addClient(this.clientModel.value).subscribe(client => {
       client = this.clientModel.value;
       console.log("client: " + client);
-        this._router.navigate(['/clients']);
+      this._router.navigate(['/clients']);
     });
 
   }

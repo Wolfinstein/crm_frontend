@@ -9,7 +9,7 @@ import {Router} from "@angular/router";
   templateUrl: './groups.component.html',
   styleUrls: ['./groups.component.scss']
 })
-export class GroupsComponent{
+export class GroupsComponent {
 
   groups: any[];
   rows = [];
@@ -18,15 +18,15 @@ export class GroupsComponent{
   temp = [];
   groupId: number;
   groupName: string = 'Choose Group';
-  errMsg : string;
+  errMsg: string;
   name: string;
   @ViewChild(DatatableComponent) table: DatatableComponent;
 
-  constructor(private clientService: ClientService, public dialog: MatDialog, private router : Router) {
-   this.getGroups();
+  constructor(private clientService: ClientService, public dialog: MatDialog, private router: Router) {
+    this.getGroups();
   }
 
-  getGroups(){
+  getGroups() {
     this.clientService.getAllGroups().subscribe(data => {
       this.groups = data;
     });
@@ -74,7 +74,7 @@ export class GroupsComponent{
     }
   }
 
-  toClient(id : number){
+  toClient(id: number) {
     if (confirm("You will lose your current selection, are u sure about leaving this page ?")) {
       this.router.navigate(['/client/' + id]);
     }
@@ -83,30 +83,26 @@ export class GroupsComponent{
   newGroup(): void {
     let dialogRef = this.dialog.open(NewGroupDialog, {
       width: '250px',
-      data: { name: this.name, errMsg : ''}
+      data: {name: this.name, errMsg: ''}
     });
 
     dialogRef.afterClosed().subscribe(result => {
       this.name = result;
-      if(this.name.length < 3)
-      {
+      if (this.name.length < 3) {
         this.name = 'no';
         this.errMsg = 'This name is shorter than 3 characters !';
-        setTimeout(() =>
-          {
+        setTimeout(() => {
             this.errMsg = '';
           },
           4000);
       }
-      else
-        {
-        this.clientService.addGroup(this.name).subscribe(data =>{
-          this.getGroups();
+      else {
+        this.clientService.addGroup(this.name).subscribe(data => {
+            this.getGroups();
           },
           error => {
             this.errMsg = 'This name is already taken  !';
-            setTimeout(() =>
-              {
+            setTimeout(() => {
                 this.errMsg = '';
               },
               4000);
@@ -118,30 +114,26 @@ export class GroupsComponent{
   editGroup(): void {
     let dialogRef = this.dialog.open(EditGroupDialog, {
       width: '250px',
-      data: { name: this.name, errMsg : ''}
+      data: {name: this.name, errMsg: ''}
     });
 
     dialogRef.afterClosed().subscribe(result => {
       this.name = result;
-      if(this.name.length < 3)
-      {
+      if (this.name.length < 3) {
         this.name = 'no';
         this.errMsg = 'This name is shorter than 3 characters !';
-        setTimeout(() =>
-          {
+        setTimeout(() => {
             this.errMsg = '';
           },
           4000);
       }
-      else
-      {
-        this.clientService.editGroup(this.name, this.groupId).subscribe(data =>{
+      else {
+        this.clientService.editGroup(this.name, this.groupId).subscribe(data => {
             this.getGroups();
           },
           error => {
             this.errMsg = 'This name is already taken  !';
-            setTimeout(() =>
-              {
+            setTimeout(() => {
                 this.errMsg = '';
               },
               4000);
@@ -150,9 +142,8 @@ export class GroupsComponent{
     });
   }
 
-  deleteGroup(id : number){
-    if (confirm("Are you really want to delete this group ?"))
-    {
+  deleteGroup(id: number) {
+    if (confirm("Are you really want to delete this group ?")) {
       this.clientService.deleteGroup(id).subscribe(data => this.getGroups(),
         error => console.log(error.status));
     }

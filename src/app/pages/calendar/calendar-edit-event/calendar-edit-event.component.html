@@ -10,11 +10,12 @@
     <div class="form-group">
       <label for="color">Event status: </label>
       <select id="color" name="color" [(ngModel)]="currentEvent.color" class="form-control">
-        <option *ngFor="let color of colors">{{ color }} </option>
+        <option *ngFor="let color of colors">{{ color }}</option>
       </select>
     </div>
 
-    <div class="form-group" *ngIf="currentEvent.color=='green' || currentEvent.color=='red' || currentEvent.color=='blue' || currentEvent.color=='yellow'">
+    <div class="form-group"
+         *ngIf="currentEvent.color=='green' || currentEvent.color=='red' || currentEvent.color=='blue' || currentEvent.color=='yellow'">
       <div class="form-group" style="float:left; width: 48%; display: inline-block;">
         <label>Start: </label>
         <mwl-demo-utils-date-time-picker
@@ -24,7 +25,8 @@
         </mwl-demo-utils-date-time-picker>
       </div>
 
-      <div class="form-group" style="float:right; width: 48%;  display: inline-block;" *ngIf="currentEvent.color=='green' || currentEvent.color=='red' || currentEvent.color=='blue' || currentEvent.color=='yellow'">
+      <div class="form-group" style="float:right; width: 48%;  display: inline-block;"
+           *ngIf="currentEvent.color=='green' || currentEvent.color=='red' || currentEvent.color=='blue' || currentEvent.color=='yellow'">
         <label>End: </label>
         <mwl-demo-utils-date-time-picker
           [(ngModel)]="currentEvent.end"
@@ -33,7 +35,8 @@
         </mwl-demo-utils-date-time-picker>
       </div>
 
-      <div class="form-group" style="clear:both;" *ngIf="currentEvent.color=='green' || currentEvent.color=='red' || currentEvent.color=='blue' || currentEvent.color=='yellow'">
+      <div class="form-group" style="clear:both;"
+           *ngIf="currentEvent.color=='green' || currentEvent.color=='red' || currentEvent.color=='blue' || currentEvent.color=='yellow'">
         <label>Title: </label>
         <input class="form-control"
                type="text"

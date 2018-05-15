@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {ClientService} from "../../../services/api/client.service";
-import {Observable} from "rxjs/Observable";
 
 @Component({
   selector: 'app-client-delete',
@@ -13,7 +12,8 @@ export class ClientDeleteComponent implements OnInit {
   client: Array<any>;
 
   constructor(private clientService: ClientService, private _route: ActivatedRoute,
-              private _router: Router) { }
+              private _router: Router) {
+  }
 
   ngOnInit() {
     let id = +this._route.snapshot.paramMap.get('id');
@@ -28,14 +28,14 @@ export class ClientDeleteComponent implements OnInit {
 
   onClickDelete(): void {
     let id = +this._route.snapshot.paramMap.get('id');
-     this.clientService.deleteClient(id)
+    this.clientService.deleteClient(id)
       .subscribe(data => {
         console.log("delete response stastus " + data.status);
-      this.client = [data];
-      if(data.status == "200"){
-        this._router.navigate(['/clients']);
-      }
-    })
+        this.client = [data];
+        if (data.status == "200") {
+          this._router.navigate(['/clients']);
+        }
+      })
   }
 
 }

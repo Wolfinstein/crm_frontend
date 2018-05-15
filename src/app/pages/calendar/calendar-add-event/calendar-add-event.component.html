@@ -9,12 +9,14 @@
 
     <div class="form-group">
       <label for="color">Event status: </label>
-      <select id="color" name="color" [(ngModel)]="eventModel.color" class="form-control" [formControl]="eventModel.controls['color']">
-        <option *ngFor="let color of colors">{{ color }} </option>
+      <select id="color" name="color" [(ngModel)]="eventModel.color" class="form-control"
+              [formControl]="eventModel.controls['color']">
+        <option *ngFor="let color of colors">{{ color }}</option>
       </select>
     </div>
 
-    <div class="form-group" *ngIf="eventModel.color=='green' || eventModel.color=='red' || eventModel.color=='blue' || eventModel.color=='yellow'">
+    <div class="form-group"
+         *ngIf="eventModel.color=='green' || eventModel.color=='red' || eventModel.color=='blue' || eventModel.color=='yellow'">
       <div class="form-group" style="float:left; width: 48%">
         <label>Start: </label>
         <mwl-demo-utils-date-time-picker
@@ -34,7 +36,9 @@
       <div class="form-group" style="clear:both;">
         <label>Title: </label>
         <input class="form-control" type="text" placeholder="Event title" [formControl]="eventModel.controls['title']">
-        <div *ngIf="eventModel.controls['title'].hasError('required') && eventModel.controls['title'].touched" class="alert alert-danger">You should include a title.</div>
+        <div *ngIf="eventModel.controls['title'].hasError('required') && eventModel.controls['title'].touched"
+             class="alert alert-danger">You should include a title.
+        </div>
       </div>
 
       <button mat-raised-button color="accent" type="submit">Add Event</button>

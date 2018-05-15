@@ -1,8 +1,8 @@
-.group-columns{
+.group-columns {
   margin-top: 30px;
 }
 
-.groups-list{
+.groups-list {
   float: left;
   width: 40vh;
   max-height: 80vh;
@@ -10,7 +10,7 @@
   overflow-y: auto;
 }
 
-.groups-inner{
+.groups-inner {
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
   border-radius: 10px;
@@ -20,7 +20,7 @@
   cursor: default;
 }
 
-.clients-in-it{
+.clients-in-it {
   float: left;
   width: 85vh;
   margin-left: 45px;
@@ -28,16 +28,16 @@
   margin-bottom: 20px;
 }
 
-.client-filter{
+.client-filter {
   margin-left: 20px;
 }
 
-.change-button{
+.change-button {
   margin-right: 20px;
   float: right;
 }
 
-.selected-column{
+.selected-column {
   float: left;
   width: 40vh;
   overflow-y: auto;
@@ -45,42 +45,39 @@
   min-height: 80vh;
 }
 
-h3{
+h3 {
   text-align: center;
   margin-bottom: 10px;
 }
 
-.add-group-icon{
+.add-group-icon {
   font-size: 30px;
   cursor: pointer;
   margin-top: 10px;
 }
 
-.double-click{
+.double-click {
   font-size: 11px;
   font-style: italic;
 }
 
-.removeGroup{
-  color : black;
+.removeGroup {
+  color: black;
   display: inline;
   float: right;
   cursor: pointer;
   margin-right: 10px;
   font-size: 3vh;
-  margin-top : 0.1vw;
+  margin-top: 0.1vw;
 }
 
-
-.group-name{
+.group-name {
   margin-right: -20px;
   display: inline;
   cursor: pointer;
 }
 
-
-
-.clientsList{
+.clientsList {
   float: left;
   width: 110vh;
   margin-left: 10vh;

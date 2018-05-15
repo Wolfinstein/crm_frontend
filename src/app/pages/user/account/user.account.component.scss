@@ -1,52 +1,53 @@
-.account-title{
+.account-title {
   text-align: center;
 }
 
-img:hover{
+img:hover {
   -webkit-filter: sepia(50%);
   filter: sepia(50%);
   -webkit-transition: .3s ease-in-out;
   transition: .3s ease-in-out;
 }
 
-.columns{
+.columns {
   margin-top: 7.5vh;
 }
 
-.column{
+.column {
   margin-right: 30px;
   width: 45vh;
   float: left;
 }
 
-.header-icon{
+.header-icon {
   margin-top: 1.5vh;
   font-size: 4vh;
 }
 
-.header-title{
+.header-title {
   margin-top: 1.5vh;
   margin-left: 2.5vh;
   font-size: 2.25vh;
 }
 
 //FIRST
-.security-content{
-  height:45vh;
+.security-content {
+  height: 45vh;
 }
 
-.change-password-section{
+.change-password-section {
   border-top: black 1px solid;
   height: 15vh;
 }
 
-.password-change-title{
+.password-change-title {
   margin-top: 4vh;
   font-size: 2.25vh;
   width: 36vh;
   margin-left: 2.5vh;
 }
-.password-image{
+
+.password-image {
   height: 7vh;
   width: 8vh;
   float: left;
@@ -56,11 +57,12 @@ img:hover{
   cursor: pointer;
 }
 
-.change-email-section{
+.change-email-section {
   border-top: black 1px solid;
   height: 15vh;
 }
-.mail-icon{
+
+.mail-icon {
   height: 7vh;
   width: 8vh;
   float: left;
@@ -69,18 +71,20 @@ img:hover{
   margin-left: 2.5vh;
   cursor: pointer;
 }
-.email-change-title{
+
+.email-change-title {
   margin-top: 4vh;
   font-size: 2.5vh;
   width: 35vh;
   margin-left: 2.5vh;
 }
 
-.see-your-access-section{
+.see-your-access-section {
   border-top: black 1px solid;
   height: 15vh;
 }
-.privacy-icon{
+
+.privacy-icon {
   height: 7vh;
   width: 8vh;
   float: left;
@@ -89,7 +93,8 @@ img:hover{
   margin-left: 2.5vh;
   cursor: pointer;
 }
-.accessibility-title{
+
+.accessibility-title {
   margin-top: 4vh;
   font-size: 2.5vh;
   width: 25vh;
@@ -97,15 +102,16 @@ img:hover{
 }
 
 //SECOND
-.options-content{
-  height:50vh;
+.options-content {
+  height: 50vh;
 }
 
-.user-data-section{
+.user-data-section {
   border-top: black 1px solid;
   height: 20vh;
 }
-.details-icon{
+
+.details-icon {
   margin-left: 2.5vh;
   margin-top: 4vh;
   width: 12vh;
@@ -114,17 +120,19 @@ img:hover{
   margin-right: 2.5vh;
   cursor: pointer;
 }
-.details-title{
+
+.details-title {
   margin-top: 4vh;
   font-size: 2.25vh;
   width: 35vh;
 }
 
-.my-statistics-section{
+.my-statistics-section {
   border-top: black 1px solid;
   height: 15vh;
 }
-.statistics-icon{
+
+.statistics-icon {
   margin-left: 2.5vh;
   margin-top: 2.5vh;
   width: 10vh;
@@ -133,17 +141,19 @@ img:hover{
   margin-right: 2.5vh;
   cursor: pointer;
 }
-.statistics-title{
+
+.statistics-title {
   margin-top: 4vh;
   font-size: 2.25vh;
   width: 35vh;
 }
 
-.my-appearance-section{
+.my-appearance-section {
   border-top: black 1px solid;
   height: 15vh;
 }
-.appearance-icon{
+
+.appearance-icon {
   margin-left: 2.5vh;
   margin-top: 2.5vh;
   width: 10vh;
@@ -152,22 +162,24 @@ img:hover{
   margin-right: 2.5vh;
   cursor: pointer;
 }
-.appearance-title{
+
+.appearance-title {
   margin-top: 3vh;
   font-size: 2.5vh;
   width: 35vh;
 }
 
 //THIRD
-.help-content{
-  height:35vh;
+.help-content {
+  height: 35vh;
 }
 
-.ask-question-section{
+.ask-question-section {
   border-top: black 1px solid;
   height: 15vh;
 }
-.question-icon{
+
+.question-icon {
   margin-left: 2.5vh;
   margin-top: 2.5vh;
   width: 10vh;
@@ -176,17 +188,19 @@ img:hover{
   margin-right: 2.5vh;
   cursor: pointer;
 }
-.question-title{
+
+.question-title {
   margin-top: 6vh;
   font-size: 2.4vh;
   width: 35vh;
 }
 
-.crm-preview-section{
+.crm-preview-section {
   border-top: black 1px solid;
   height: 20vh;
 }
-.preview-icon{
+
+.preview-icon {
   margin-left: 2.5vh;
   margin-top: 3vh;
   width: 15vh;
@@ -195,7 +209,8 @@ img:hover{
   margin-right: 2.5vh;
   cursor: pointer;
 }
-.preview-title{
+
+.preview-title {
   margin-top: 5vh;
   font-size: 2.4vh;
   width: 35vh;

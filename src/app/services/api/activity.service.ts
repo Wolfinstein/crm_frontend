@@ -9,20 +9,21 @@ import {ActivatedRoute, Router} from "@angular/router";
 export class ActivityService {
 
   constructor(private _route: ActivatedRoute, private _router: Router, private clientService: ClientService,
-              private userInfoService: UserInfoService) { }
+              private userInfoService: UserInfoService) {
+  }
 
-   addActivity(activityModel : ActivityModel, clientId : number) {
-     let params = new HttpParams()
-         .append('clientId', clientId.toString())
-         .append('userId', this.userInfoService.getUserInfo().userId);
+  addActivity(activityModel: ActivityModel, clientId: number) {
+    let params = new HttpParams()
+      .append('clientId', clientId.toString())
+      .append('userId', this.userInfoService.getUserInfo().userId);
 
-      this.clientService.addActivity(activityModel, params)
-          .subscribe(data =>{
-            },
-            error => {
-              console.log(error);
-            });
-   }
+    this.clientService.addActivity(activityModel, params)
+      .subscribe(data => {
+        },
+        error => {
+          console.log(error);
+        });
+  }
 
 
 }

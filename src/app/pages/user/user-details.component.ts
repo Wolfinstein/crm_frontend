@@ -1,40 +1,39 @@
-import {Component, Input, OnDestroy, OnInit} from "@angular/core";
+import {Component, OnDestroy, OnInit} from "@angular/core";
 import {ActivatedRoute, Router} from "@angular/router";
 import {UserService} from "../../services/api/user.service";
-import {UserForm} from "../../models/user-form.model";
 
 @Component({
   selector: 'user-details',
   templateUrl: './user-details.component.html',
   styleUrls: ['./user-details.component.scss'],
 })
-export class UserDetailsComponent implements OnInit,OnDestroy {
+export class UserDetailsComponent implements OnInit, OnDestroy {
   user: any;
-  activities : any[] = [];
-  private sub: any;
+  activities: any[] = [];
   id = +this.route.snapshot.paramMap.get('id');
-  constructor(private route: ActivatedRoute, private router: Router,  private userService: UserService) {
+  private sub: any;
+
+  constructor(private route: ActivatedRoute, private router: Router, private userService: UserService) {
   }
 
-  ngOnInit()
-  {
+  ngOnInit() {
     this.getActivities();
     this.getDetails();
   }
 
-  getDetails(){
+  getDetails() {
     this.sub = this.userService.getUser(this.id)
       .subscribe(data => {
         this.user = data;
       });
   }
 
-  getActivities(){
+  getActivities() {
     this.sub = this.userService.getActivities(this.id)
       .subscribe(data => {
         this.activities = data;
-      },error => {
-        if(error.status === 404){
+      }, error => {
+        if (error.status === 404) {
           console.log('No activities');
         }
       })

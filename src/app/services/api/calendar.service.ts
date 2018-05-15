@@ -6,7 +6,8 @@ import {EventModel} from "../../models/event.model";
 @Injectable()
 export class CalendarService {
 
-  constructor(private apiRequest: ApiRequestService) { }
+  constructor(private apiRequest: ApiRequestService) {
+  }
 
   getAllEvents() {
     return this.apiRequest.get('/events');
@@ -16,12 +17,12 @@ export class CalendarService {
     return this.apiRequest.get('/event/' + id);
   }
 
-  editEvent(id, event: EventModel){
-    return this.apiRequest.put( "/event/edit/" + id, event)
+  editEvent(id, event: EventModel) {
+    return this.apiRequest.put("/event/edit/" + id, event)
   }
 
   addEvent(event: FormGroup, id) {
-    return this.apiRequest.post("event/" + id , event );
+    return this.apiRequest.post("event/" + id, event);
   }
 
   deleteEvent(id) {

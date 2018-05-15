@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {CalendarService} from "../../../services/api/calendar.service";
 import {EventModel} from "../../../models/event.model";
@@ -11,12 +11,13 @@ import {EventModel} from "../../../models/event.model";
 export class CalendarEditEventComponent implements OnInit {
 
 
-  currentEvent : EventModel;
+  currentEvent: EventModel;
   id = this._route.snapshot.paramMap.get('id');
-  colors : string[] = ["Select status", "green", "red", "yellow", "blue"];
+  colors: string[] = ["Select status", "green", "red", "yellow", "blue"];
 
   constructor(private _route: ActivatedRoute, private calendarService: CalendarService,
-              private _router: Router,) { }
+              private _router: Router,) {
+  }
 
   ngOnInit() {
 
@@ -27,7 +28,7 @@ export class CalendarEditEventComponent implements OnInit {
 
   getEventDetails(id) {
     this.calendarService.getEvent(id)
-      .subscribe((event: EventModel) =>{
+      .subscribe((event: EventModel) => {
         this.currentEvent = event;
       });
   }

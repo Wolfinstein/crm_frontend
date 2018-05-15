@@ -12,11 +12,11 @@ import {UserInfoService} from "../../../services/user-info.service";
 export class CalendarAddEventComponent implements OnInit {
 
   @Input() eventModel: FormGroup;
-  colors : string[] = ["Select status", "green", "red", "yellow", "blue"];
+  colors: string[] = ["Select status", "green", "red", "yellow", "blue"];
 
   constructor(private _router: Router, private calendarService: CalendarService,
               formBuilder: FormBuilder, private userInfoService: UserInfoService) {
-    this.eventModel = formBuilder.group( {
+    this.eventModel = formBuilder.group({
       'start': [""],
       'end': [""],
       'title': ["", Validators.compose([Validators.required])],
@@ -31,15 +31,16 @@ export class CalendarAddEventComponent implements OnInit {
     id = this.userInfoService.getUserInfo().userId;
     console.log("eventModel.start: " + this.eventModel.value.start);
 
-    if (this.eventModel.value.start == null || this.eventModel.value.start == ""){
+    if (this.eventModel.value.start == null || this.eventModel.value.start == "") {
       if (confirm("You didn't choose the start date")) {
 
       }
-    } if (this.eventModel.value.end == null || this.eventModel.value.end == ""){
-        if (confirm("You didn't choose the end date")) {
+    }
+    if (this.eventModel.value.end == null || this.eventModel.value.end == "") {
+      if (confirm("You didn't choose the end date")) {
 
-        }
-      } else {
+      }
+    } else {
       this.calendarService.addEvent(this.eventModel.value, id).subscribe(event => {
         event = this.eventModel.value;
         this._router.navigate(['/calendar']);

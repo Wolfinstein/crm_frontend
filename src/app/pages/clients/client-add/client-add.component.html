@@ -1,18 +1,19 @@
-
 <div class="container">
   <form class="form-control" (ngSubmit)="createClient()">
 
     <div class="form-group">
       <label for="role">Client type: </label>
-      <select id="role" name="client_type" [(ngModel)]="clientModel.client_type" class="form-control" [formControl]="clientModel.controls['client_type']">
-        <option *ngFor="let client_type of client_types">{{ client_type }} </option>
+      <select id="role" name="client_type" [(ngModel)]="clientModel.client_type" class="form-control"
+              [formControl]="clientModel.controls['client_type']">
+        <option *ngFor="let client_type of client_types">{{ client_type }}</option>
       </select>
     </div>
 
     <div class="form-group" style="float:left; width: 48%">
       <div class="form-group" *ngIf="clientModel.client_type=='Individual'">
         <label>First Name: </label>
-        <input class="form-control" type="text" placeholder="Your first name" [formControl]="clientModel.controls['firstName']">
+        <input class="form-control" type="text" placeholder="Your first name"
+               [formControl]="clientModel.controls['firstName']">
       </div>
 
       <div class="form-group" *ngIf="clientModel.client_type=='Company'">
@@ -20,11 +21,17 @@
         <input class="form-control" type="text" placeholder="Your name" [formControl]="clientModel.controls['name']">
       </div>
 
-      <div class="form-group" [ngClass]="{'has-error':!clientModel.controls['email'].valid}" *ngIf="clientModel.client_type=='Company' || clientModel.client_type=='Individual'">
+      <div class="form-group" [ngClass]="{'has-error':!clientModel.controls['email'].valid}"
+           *ngIf="clientModel.client_type=='Company' || clientModel.client_type=='Individual'">
         <label>Email: </label>
-        <input class="form-control" type="email" placeholder="example@example.com" [formControl]="clientModel.controls['email']">
-        <div *ngIf="clientModel.controls['email'].hasError('required') && clientModel.controls['email'].touched" class="alert alert-danger">You must include an email.</div>
-        <div *ngIf="clientModel.controls['email'].hasError('email') && clientModel.controls['email'].touched" class="alert alert-danger">It has to be a correct email format like "example@example.com".</div>
+        <input class="form-control" type="email" placeholder="example@example.com"
+               [formControl]="clientModel.controls['email']">
+        <div *ngIf="clientModel.controls['email'].hasError('required') && clientModel.controls['email'].touched"
+             class="alert alert-danger">You must include an email.
+        </div>
+        <div *ngIf="clientModel.controls['email'].hasError('email') && clientModel.controls['email'].touched"
+             class="alert alert-danger">It has to be a correct email format like "example@example.com".
+        </div>
       </div>
 
       <div class="form-group" *ngIf="clientModel.client_type=='Company'">
@@ -34,44 +41,60 @@
 
       <div class="form-group" *ngIf="clientModel.client_type=='Company' || clientModel.client_type=='Individual'">
         <label>Descripton: </label>
-        <input class="form-control" type="text" placeholder="Your description" [formControl]="clientModel.controls['description']">
+        <input class="form-control" type="text" placeholder="Your description"
+               [formControl]="clientModel.controls['description']">
       </div>
     </div>
 
     <div class="form-group" style="float:right; width: 48%">
       <div class="form-group" *ngIf="clientModel.client_type=='Individual'">
         <label>Last Name: </label>
-        <input class="form-control" type="text" placeholder="Your last name" [formControl]="clientModel.controls['lastName']">
+        <input class="form-control" type="text" placeholder="Your last name"
+               [formControl]="clientModel.controls['lastName']">
       </div>
 
-      <div class="form-group" [ngClass]="{'has-error':!clientModel.controls['nip'].valid}" *ngIf="clientModel.client_type=='Company'" >
+      <div class="form-group" [ngClass]="{'has-error':!clientModel.controls['nip'].valid}"
+           *ngIf="clientModel.client_type=='Company'">
         <label>Nip: </label>
         <input class="form-control" type="text" placeholder="9010101011" [formControl]="clientModel.controls['nip']">
-        <div *ngIf="clientModel.controls['nip'].hasError('required') && clientModel.controls['nip'].touched" class="alert alert-danger">You must include a Nip.</div>
+        <div *ngIf="clientModel.controls['nip'].hasError('required') && clientModel.controls['nip'].touched"
+             class="alert alert-danger">You must include a Nip.
+        </div>
       </div>
 
-      <div class="form-group" [ngClass]="{'has-error':!clientModel.controls['phone'].valid}" *ngIf="clientModel.client_type=='Company' || clientModel.client_type=='Individual'">
+      <div class="form-group" [ngClass]="{'has-error':!clientModel.controls['phone'].valid}"
+           *ngIf="clientModel.client_type=='Company' || clientModel.client_type=='Individual'">
         <label>Phone: </label>
         <input class="form-control" type="text" placeholder="111222555" [formControl]="clientModel.controls['phone']">
-        <div *ngIf="clientModel.controls['phone'].hasError('required') && clientModel.controls['phone'].touched" class="alert alert-danger">You must include a phone.</div>
-        <div *ngIf="clientModel.controls['phone'].hasError('minlength') && clientModel.controls['phone'].touched" class="alert alert-danger">Your phone must be at least 9 characters long.</div>
+        <div *ngIf="clientModel.controls['phone'].hasError('required') && clientModel.controls['phone'].touched"
+             class="alert alert-danger">You must include a phone.
+        </div>
+        <div *ngIf="clientModel.controls['phone'].hasError('minlength') && clientModel.controls['phone'].touched"
+             class="alert alert-danger">Your phone must be at least 9 characters long.
+        </div>
       </div>
 
-      <div class="form-group" [ngClass]="{'has-error':!clientModel.controls['regon'].valid}" *ngIf="clientModel.client_type=='Company'" >
+      <div class="form-group" [ngClass]="{'has-error':!clientModel.controls['regon'].valid}"
+           *ngIf="clientModel.client_type=='Company'">
         <label>REGON: </label>
         <input class="form-control" type="text" placeholder="215654215" [formControl]="clientModel.controls['regon']">
-        <div *ngIf="clientModel.controls['regon'].hasError('required') && clientModel.controls['regon'].touched" class="alert alert-danger">You must include a REGON.</div>
+        <div *ngIf="clientModel.controls['regon'].hasError('required') && clientModel.controls['regon'].touched"
+             class="alert alert-danger">You must include a REGON.
+        </div>
       </div>
 
-      <div class="form-group"  *ngIf="clientModel.client_type=='Company'">
+      <div class="form-group" *ngIf="clientModel.client_type=='Company'">
         <label>Trade: </label>
         <input class="form-control" type="text" placeholder="Your trade" [formControl]="clientModel.controls['trade']">
       </div>
 
-      <div class="form-group" [ngClass]="{'has-error':!clientModel.controls['pesel'].valid}" *ngIf="clientModel.client_type=='Individual'" >
+      <div class="form-group" [ngClass]="{'has-error':!clientModel.controls['pesel'].valid}"
+           *ngIf="clientModel.client_type=='Individual'">
         <label>PESEL: </label>
         <input class="form-control" type="text" placeholder="90101010121" [formControl]="clientModel.controls['pesel']">
-        <div *ngIf="clientModel.controls['pesel'].hasError('required') && clientModel.controls['pesel'].touched" class="alert alert-danger">You must include a PESEL.</div>
+        <div *ngIf="clientModel.controls['pesel'].hasError('required') && clientModel.controls['pesel'].touched"
+             class="alert alert-danger">You must include a PESEL.
+        </div>
       </div>
     </div>
 
@@ -79,10 +102,13 @@
 
       <div class="form-group" *ngIf="clientModel.client_type=='Company'">
         <label>Website: </label>
-        <input class="form-control" type="text" placeholder="Your website" [formControl]="clientModel.controls['website']">
+        <input class="form-control" type="text" placeholder="Your website"
+               [formControl]="clientModel.controls['website']">
       </div>
 
-      <button mat-raised-button *ngIf="clientModel.client_type=='Company' || clientModel.client_type=='Individual'" color="accent" type="submit">Add Client</button>
+      <button mat-raised-button *ngIf="clientModel.client_type=='Company' || clientModel.client_type=='Individual'"
+              color="accent" type="submit">Add Client
+      </button>
     </div>
 
   </form>

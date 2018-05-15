@@ -1,8 +1,8 @@
-.container{
+.container {
   padding-top: 2%;
 }
 
-.mat-raised-button{
+.mat-raised-button {
   margin-bottom: 5px;
 }
 
@@ -29,18 +29,21 @@ li a.active {
   color: #c8e6c9;
 }
 
-li a:hover {background-color: #c8e6c9;}
+li a:hover {
+  background-color: #c8e6c9;
+}
 
-.pagination-custom{
+.pagination-custom {
 
   text-align: center;
 }
 
-.ngx-datatable{
+.ngx-datatable {
   width: 100%;
-  white-space:nowrap;
+  white-space: nowrap;
 }
-datatable-header{
+
+datatable-header {
   white-space: nowrap;
 
   text-align: -webkit-center;

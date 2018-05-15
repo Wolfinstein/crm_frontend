@@ -10,18 +10,17 @@ import {Location} from "@angular/common";
 
 export class FooterComponent implements OnInit {
 
-  route : string;
-  constructor(private location: Location, private router:Router){
+  route: string;
+
+  constructor(private location: Location, private router: Router) {
   }
 
   ngOnInit() {
     this.router.events.subscribe((val) => {
-      if(location.pathname != '')
-      {
+      if (location.pathname != '') {
         this.route = location.pathname;
       }
-      else
-      {
+      else {
         this.route = 'home'
       }
     })

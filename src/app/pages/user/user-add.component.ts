@@ -1,8 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
-import { Router } from '@angular/router';
-import { UserService } from '../../services/api/user.service';
+import {Router} from '@angular/router';
+import {UserService} from '../../services/api/user.service';
 import {AbstractControl, FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {Observable} from "rxjs/Observable";
 
 @Component({
   selector: 'user-add',
@@ -12,7 +11,7 @@ import {Observable} from "rxjs/Observable";
 export class UserAddComponent implements OnInit {
 
   @Input() userForm: FormGroup;
-  errMsg:string;
+  errMsg: string;
   roles: string[] = ['SALESMAN', 'MANAGER', 'ADMIN'];
 
   constructor(fb: FormBuilder, private router: Router, private userService: UserService) {
@@ -49,12 +48,11 @@ export class UserAddComponent implements OnInit {
           }
         },
         error => {
-           if (error.status == 409)
-          {
+          if (error.status == 409) {
             this.errMsg = "There is already user with this email."
           }
 
-      });
+        });
   }
 
 

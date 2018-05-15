@@ -1,6 +1,5 @@
 import {Component, OnInit} from "@angular/core";
 import {UserService} from "../../../services/api/user.service";
-import {UserForm} from "../../../models/user-form.model";
 import {UserInfoService} from "../../../services/user-info.service";
 import {Router} from "@angular/router";
 
@@ -11,46 +10,40 @@ import {Router} from "@angular/router";
 })
 export class UserAccountComponent implements OnInit {
 
-  user  : any;
-  constructor(private userInfoService : UserInfoService, private userService : UserService, private router: Router){
+  user: any;
+
+  constructor(private userInfoService: UserInfoService, private userService: UserService, private router: Router) {
   }
 
-  ngOnInit()
-  {
-    this.user =  this.userInfoService.getUserInfo();
+  ngOnInit() {
+    this.user = this.userInfoService.getUserInfo();
   }
 
-  accountDetails(){
+  accountDetails() {
     this.router.navigate(['users/' + this.user.userId]);
   }
 
-  appearanceChange()
-  {
+  appearanceChange() {
     this.router.navigate(['theme']);
   }
 
-  passwordChange()
-  {
+  passwordChange() {
     this.router.navigate(['user/change-password/' + this.user.userId]);
   }
 
-  emailChange()
-  {
+  emailChange() {
     this.router.navigate(['user/change-email/' + this.user.userId]);
   }
 
-  showPermissions()
-  {
+  showPermissions() {
     this.router.navigate(['permissions']);
   }
 
-  amaQuestion()
-  {
+  amaQuestion() {
     this.router.navigate(['ama-email']);
   }
 
-  showStatistics()
-  {
+  showStatistics() {
     this.router.navigate(['statistics']);
 
   }

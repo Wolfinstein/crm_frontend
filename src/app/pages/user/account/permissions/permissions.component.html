@@ -2,12 +2,12 @@
   <mat-table #table [dataSource]="dataSource">
 
     <ng-container matColumnDef="permission">
-      <mat-header-cell *matHeaderCellDef> Permission </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.permission}} </mat-cell>
+      <mat-header-cell *matHeaderCellDef> Permission</mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.permission}}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="admin">
-      <mat-header-cell *matHeaderCellDef> Admin </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef> Admin</mat-header-cell>
       <mat-cell *matCellDef="let element">
         <div *ngIf="element.admin === 'full'">
           <span matTooltip="Full Access"><mat-icon>star</mat-icon></span>
@@ -22,7 +22,7 @@
     </ng-container>
 
     <ng-container matColumnDef="manager">
-      <mat-header-cell *matHeaderCellDef> Manager </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef> Manager</mat-header-cell>
       <mat-cell *matCellDef="let element">
         <div *ngIf="element.manager === 'full'">
           <span matTooltip="Full Access"><mat-icon>star</mat-icon></span>
@@ -37,7 +37,7 @@
     </ng-container>
 
     <ng-container matColumnDef="salesman">
-      <mat-header-cell *matHeaderCellDef> Salesman </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef> Salesman</mat-header-cell>
       <mat-cell *matCellDef="let element">
         <div *ngIf="element.salesman === 'full'">
           <span matTooltip="Full Access"><mat-icon>star</mat-icon></span>

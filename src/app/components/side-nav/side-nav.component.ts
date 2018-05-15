@@ -12,36 +12,38 @@ import {OverlayContainer} from "@angular/cdk/overlay";
 
 export class SideNavComponent implements OnInit {
   sidenavWidth = 4;
-  route : string;
-  clients : any[]= [];
+  route: string;
+  clients: any[] = [];
   showUsers: boolean = true;
   showClients: boolean = true;
   showProducts: boolean = true;
+  defaultTheme: string = 'default-theme';
+  darkTheme: string = 'dark-theme';
+  currentTheme = this.defaultTheme;
+  @HostBinding('class') componentCssClass;
 
-  constructor(private userInfo: UserInfoService, private location: Location, private router:Router, public overlayContainer: OverlayContainer){
+  constructor(private userInfo: UserInfoService, private location: Location, private router: Router, public overlayContainer: OverlayContainer) {
   }
 
   ngOnInit() {
     this.sidenavWidth = 4;
 
     this.router.events.subscribe((val) => {
-      if(location.pathname != '')
-      {
+      if (location.pathname != '') {
         this.route = location.pathname;
       }
-      else
-      {
+      else {
         this.route = 'home'
       }
     })
 
   }
 
-  increase () {
+  increase() {
     this.sidenavWidth = 14;
   }
 
-  decrease () {
+  decrease() {
     this.sidenavWidth = 4;
   }
 
@@ -49,53 +51,42 @@ export class SideNavComponent implements OnInit {
     return this.userInfo.isLoggedIn();
   };
 
-
-  defaultTheme : string = 'default-theme';
-  darkTheme : string = 'dark-theme';
-  currentTheme = this.defaultTheme;
-
-  @HostBinding('class') componentCssClass;
-
   onSetTheme(theme) {
     this.overlayContainer.getContainerElement().classList.add(theme);
     this.componentCssClass = theme;
   }
 
-  toDark()
-  {
+  toDark() {
     this.currentTheme = this.darkTheme;
     this.onSetTheme(this.currentTheme);
   }
 
-  toLight()
-  {
+  toLight() {
     this.currentTheme = this.defaultTheme;
     this.onSetTheme(this.currentTheme);
   }
 
-  isInThemeChange() :boolean
-  {
-    if(this.IsLoggedIn())
-    {
+  isInThemeChange(): boolean {
+    if (this.IsLoggedIn()) {
       return this.route === '/theme';
     }
   }
 
 
-  showUsersOptions(){
+  showUsersOptions() {
     this.showUsers = !this.showUsers;
   }
 
-  showClientsOptions(){
+  showClientsOptions() {
     this.showClients = !this.showClients;
   }
 
-  showProductsOptions(){
+  showProductsOptions() {
     this.showProducts = !this.showProducts;
   }
 
   showUserLink(): boolean {
-      return this.userInfo.getUserInfo().role != 'SALESMAN';
+    return this.userInfo.getUserInfo().role != 'SALESMAN';
   }
 
 }
